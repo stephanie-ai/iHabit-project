@@ -1,0 +1,21 @@
+#plushabit {
+    border: none;
+    padding: 25px;
+    text-align: center;
+    font-size: 3rem;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #00BCD4;
+    background: #ECECEC;
+    font-weight: bold;
+    width: 100px;
+    height: 100px;
+}
+
+#plushabit:hover {
+    background: #636363;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.28);
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+}
