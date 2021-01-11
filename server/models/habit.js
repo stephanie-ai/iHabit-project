@@ -33,8 +33,14 @@ class Habit {
             try{ 
                 const result = await db.run(SQL`INSERT INTO habits (habit, user_id, weekly_track, daily_track) 
                                                     VALUES (${habit}, ${user}, ${weeklyNum}, ${dailyNum}) RETURNING *;`);
-                const daynum = await Daytrack.createNewHabit(this.id, user, dailyNum);
-                const weeknum = await Weektrack.createNewHabit(this.id, user, weeklyNum);
+                //console.log(result.rows[0].id);
+
+                let daynum = await Daytrack.createNewHabit(result.rows[0].id, user, dailyNum);
+                console.log(daynum.rows[0]);
+
+                let weeknum = await Weektrack.createNewHabit(result.rows[0].id, user);
+                console.log(weeknum.rows[0]);
+
                 resolve (result.rows[0]);
             }catch (err){
                 reject ('Habit could not be created')

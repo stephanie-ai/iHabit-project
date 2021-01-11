@@ -1,6 +1,8 @@
 const SQL = require("sql-template-strings");
 const db = require('../db/config');
 
+const moment = require('moment');
+
 class Weektrack {
     constructor(data){
         this.id = data.id
@@ -23,11 +25,31 @@ class Weektrack {
                                                     WHERE user_id = ${id}
                                                     AND start_date = ${date};`)
                 const weeklyhabits = result.rows.map(a => new Weektrack(a))
-                resolve(weeklyhabits)
+                resolve(weeklyhabits);
             }catch(err){
                 reject("Users habits could not be found for this week.")
             }
         })
     }
+
+    m = moment();
+
+    static createNewHabit(habitId, userId){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const habitData = await db.run(SQL`INSERT INTO daytrack (habit_id, user_id, completion_average, start_date)
+                                        VALUES 
+                                            ${habitId},
+                                            ${userId},
+                                            ${0},
+                                            ${m.startOf('isoWeek')}
+                                        ;`);
+                resolve (habitData.rows[0]);
+            } catch (err) {
+                reject('New weektrack habit could not be created')
+            }
+        })
+    }
 }
-module.exports = Weektrack
+
+module.exports = Weektrack;
