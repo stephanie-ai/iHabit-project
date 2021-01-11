@@ -7,10 +7,10 @@ const NavBar = ({ isLoggedIn, logout }) => {
             { !isLoggedIn ?
                 <>
                 <NavLink exact to='/'>Home</NavLink>
-                <NavLink to='/login'>Login</NavLink>
-                <NavLink to='/register'>Register</NavLink>
+                <NavLink exact to='/login'>Login</NavLink>
+                <NavLink exact to='/register'>Register</NavLink>
                 </>
-                : 
+                :
                 <>
                 <NavLink to='/habits'>Habits</NavLink>
                 <NavLink to='/addhabit'>Add Habit</NavLink>
@@ -19,7 +19,6 @@ const NavBar = ({ isLoggedIn, logout }) => {
                 </>
             }
         </nav>
-
     );
 }
 

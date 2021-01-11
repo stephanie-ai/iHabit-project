@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import Home from './pages/Home';
-import NavBar from './components/NavBar';
-import Login from './components/Login';
-// import AddHabit from './pages/AddHabit';
-// import { Habits } from './pages';
+import { Home, Habits } from './pages';
+import { NavBar, Login, LoggedOutRoute, Register, PrivateRoute } from './components';
 
 class App extends Component {
     state = {
-        isLoggedIn: false,
+        isLoggedIn: true, // must change back to false
         currentUser: {}
     }
 
@@ -29,10 +26,10 @@ class App extends Component {
     //     }
     // }
 
-    // logout = () => {
-    //     this.setState({ isLoggedIn: false })
-    //     this.props.history.push('/')
-    // }
+    logout = () => {
+        this.setState({ isLoggedIn: false })
+        this.props.history.push('/')
+    }
 
     render() {
       return (
@@ -44,12 +41,13 @@ class App extends Component {
                   <Route exact path='/' component={Home} />
                   {/* <Route exact path='/habits' component={Habits} /> */}
                   {/* <Route path='/addhabit' component={AddHabit} /> */}
+                  <LoggedOutRoute path='/login' isLoggedIn={this.state.isLoggedIn} login={this.login} component={Login} />
+                  <LoggedOutRoute path='/register' isLoggedIn={this.state.isLoggedIn} login={this.login} component={Register} /> 
+                  <PrivateRoute path='/habits' isLoggedIn={this.state.isLoggedIn} component={Habits} />
               </Switch>
-
-              <Login />
           </main>
       )
     }
-  }
+}
 
 export default withRouter(App);

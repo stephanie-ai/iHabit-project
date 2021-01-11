@@ -24,11 +24,11 @@ class Register extends Component {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData)
             }
-            const r = await fetch(`http://localhost:3000/auth/register`, options);
+            const r = await fetch(`http://localhost:3000/register`, options);
             const data = await r.json();
             if (data.err) { throw Error(data.err) }
             this.props.login(userData);
-            this.props.history.push('./feed')
+            this.props.history.push('./habits')
         } catch (err) {
             console.warn(err);
             this.setState({

@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 // import { AddHabit } from './AddHabit';
 
 class Habits extends Component {
-    state = { habits: [] }
+    // state = { habits: [] }
 
-    componentDidMount = () => this.fetchHabits();
+    // componentDidMount = () => this.fetchHabits();
 
-    fetchHabits = async () => {
-        const resp = await fetch(`http://localhost:3000/habits`);
-        const habits = await resp.json()
-        this.setState({ habits })
-    }
+    // fetchHabits = async () => {
+    //     const resp = await fetch(`http://localhost:3000/habits`);
+    //     const habits = await resp.json()
+    //     this.setState({ habits })
+    // }
     
     render(){
         // const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} />)
