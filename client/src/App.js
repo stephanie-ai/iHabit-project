@@ -5,7 +5,7 @@ import { NavBar, Login, LoggedOutRoute, Register, PrivateRoute } from './compone
 
 class App extends Component {
     state = {
-        isLoggedIn: true, // must change back to false
+        isLoggedIn: false, // must change back to false
         currentUser: {}
     }
 
@@ -20,7 +20,7 @@ class App extends Component {
     //         const data = await r.json()
     //         if (data.err){ throw Error(data.err) }
     //         this.setState({ isLoggedIn: true, currentUser: data.user })
-    //         this.props.history.push('./feed')
+    //         this.props.history.push('./habits')
     //     } catch (err) {
     //         console.warn(`Error: ${err}`);
     //     }
