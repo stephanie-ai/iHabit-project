@@ -22,14 +22,14 @@ router.post('/login', async (req, res) => {
         if(!user){
             throw new Error('No user with this username')
         }
-        const authed = bcrypt.compare(req.body.password, user.passwordDigest);
-        if (!!authed) {
+        const authed = await bcrypt.compare(req.body.password, user.passwordDigest);
+        if (authed) {
             res.status(200).json({ user });
         } else {
             throw new Error('User could not be authenticated');
         }
     } catch (err) {
-        res.status(401).json({ err });
+        res.status(401).send('User could not be authenticated');
     }
 })
 
