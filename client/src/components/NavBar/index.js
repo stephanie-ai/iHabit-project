@@ -6,9 +6,9 @@ const NavBar = ({ isLoggedIn, logout }) => {
         <nav>
             { !isLoggedIn ?
                 <>
-                <NavLink exact to='/'>Home</NavLink>
+                {/* <NavLink exact to='/'>Home</NavLink>
                 <NavLink exact to='/login'>Login</NavLink>
-                <NavLink exact to='/register'>Register</NavLink>
+                <NavLink exact to='/register'>Register</NavLink> */}
                 </>
                 :
                 <>
