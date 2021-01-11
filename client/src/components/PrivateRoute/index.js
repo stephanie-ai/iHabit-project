@@ -11,3 +11,5 @@ const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
 
 
 export default PrivateRoute;
+
+// NOT NOT isLoggedIn equals isLoggedIn

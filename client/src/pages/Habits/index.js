@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { AddHabit } from './AddHabit';
+import './style.css';
 
 class Habits extends Component {
     // state = { habits: [] }
@@ -18,7 +19,7 @@ class Habits extends Component {
         return (
             <section id="habits">
                 <h3>Hello from habits page</h3>
-                <button>+</button>
+                <button id="plushabit">+</button>
                 {/* { renderHabits } */}
             </section>
         );
