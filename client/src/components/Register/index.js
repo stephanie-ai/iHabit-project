@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 class Register extends Component {
     state = {
@@ -10,34 +10,34 @@ class Register extends Component {
 
     handleInput = e => this.setState({ [e.target.name]: e.target.value });
 
-    formIncomplete = () => Object.values(this.state).some(v => !v) || this.state.password !== this.state.passwordConfirmation
+    // formIncomplete = () => Object.values(this.state).some(v => !v) || this.state.password !== this.state.passwordConfirmation
 
-    register = async (e) => {
-        e.preventDefault();
-        try {
-            const userData = {
-                username: this.state.username,
-                password: this.state.password
-            }
-            const options = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(userData)
-            }
-            const r = await fetch(`http://localhost:3000/register`, options);
-            const data = await r.json();
-            if (data.err) { throw Error(data.err) }
-            this.props.login(userData);
-            this.props.history.push('./habits')
-        } catch (err) {
-            console.warn(err);
-            this.setState({
-                username: "",
-                password: "",
-                passwordConfirmation: ""
-            })
-        }
-    }
+    // register = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const userData = {
+    //             username: this.state.username,
+    //             password: this.state.password
+    //         }
+    //         const options = {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(userData)
+    //         }
+    //         const r = await fetch(`http://localhost:3000/register`, options);
+    //         const data = await r.json();
+    //         if (data.err) { throw Error(data.err) }
+    //         this.props.login(userData);
+    //         this.props.history.push('./habits')
+    //     } catch (err) {
+    //         console.warn(err);
+    //         this.setState({
+    //             username: "",
+    //             password: "",
+    //             passwordConfirmation: ""
+    //         })
+    //     }
+    // }
 
     render() {
         return (
@@ -47,15 +47,15 @@ class Register extends Component {
                 <form onSubmit={this.register}>
 
                     <label htmlFor="username">Your new username</label>
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleInput} />
+                    <input type="text" name="username" onChange={this.handleInput} />
 
-                    <label htmlFor="password">Create password</label>
-                    <input type="text" name="password" value={this.state.password} onChange={this.handleInput} />
+                    <label htmlFor="password">Create a password</label>
+                    <input type="text" name="password" onChange={this.handleInput} />
 
                     <label htmlFor="passwordConfirmation">Confirm your password</label>
-                    <input type="text" name="passwordConfirmation" value={this.state.passwordConfirmation} onChange={this.handleInput} />
+                    <input type="text" name="passwordConfirmation" onChange={this.handleInput} />
 
-                    <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Create Account" />
+                    <input type="submit"  value="Create Account" />
 
                 </form>
             </div>
@@ -63,4 +63,8 @@ class Register extends Component {
     }
 }
 
-export default withRouter(Register);
+export default Register;
+
+// value={this.state.username} value={this.state.password}  value={this.state.passwordConfirmation} 
+
+// className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()}
