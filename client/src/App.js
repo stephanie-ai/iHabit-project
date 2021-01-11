@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { Home, Habits } from './pages';
+import { Home, Habits, Statistics } from './pages';
 import { NavBar, Login, LoggedOutRoute, Register, PrivateRoute } from './components';
 
 class App extends Component {
@@ -35,8 +35,7 @@ class App extends Component {
       return (
           <main>
               <NavBar isLoggedIn={this.state.isLoggedIn} logout={this.logout} />
-              <h1>Welcome to iHabit</h1>
-              <p>Keep track of your habits here on a daily or weekly basis.</p>
+              
               <Switch>
                   <Route exact path='/' component={Home} />
                   {/* <Route exact path='/habits' component={Habits} /> */}
@@ -44,6 +43,7 @@ class App extends Component {
                   <LoggedOutRoute path='/login' isLoggedIn={this.state.isLoggedIn} login={this.login} component={Login} />
                   <LoggedOutRoute path='/register' isLoggedIn={this.state.isLoggedIn} login={this.login} component={Register} /> 
                   <PrivateRoute path='/habits' isLoggedIn={this.state.isLoggedIn} component={Habits} />
+                  <PrivateRoute path='/statistics' isLoggedIn={this.state.isLoggedIn} component={Statistics} />
               </Switch>
           </main>
       )
