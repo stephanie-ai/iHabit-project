@@ -15,9 +15,9 @@ const config = {
   mode: 'development', // tells webpack to use its built-in optimizations according to the mode
   resolve: {
     // instructions on how to resolve modules
-    // alias: {
-    //   'path-to-regexp': path.resolve(__dirname, 'node_modules', 'react-router', 'node_modules', 'path-to-regexp')
-    // },
+  //   alias: {
+  //     'path-to-regexp': path.resolve(__dirname, 'node_modules', 'react-router', 'node_modules', 'path-to-regexp')
+  // },
     modules: [path.resolve('node_modules'), 'node_modules'], // tells webpack where to look for node_modules
   },
   performance: {
