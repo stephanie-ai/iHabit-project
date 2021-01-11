@@ -10,7 +10,7 @@ class Register extends Component {
 
     handleInput = e => this.setState({ [e.target.name]: e.target.value });
 
-    // formIncomplete = () => Object.values(this.state).some(v => !v) || this.state.password !== this.state.passwordConfirmation
+    formIncomplete = () => Object.values(this.state).some(v => !v) || this.state.password !== this.state.passwordConfirmation
 
     // register = async (e) => {
     //     e.preventDefault();
@@ -55,7 +55,7 @@ class Register extends Component {
                     <label htmlFor="passwordConfirmation">Confirm your password</label>
                     <input type="text" name="passwordConfirmation" onChange={this.handleInput} />
 
-                    <input type="submit"  value="Create Account" />
+                    <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Create Account" />
 
                 </form>
             </div>
@@ -66,5 +66,3 @@ class Register extends Component {
 export default Register;
 
 // value={this.state.username} value={this.state.password}  value={this.state.passwordConfirmation} 
-
-// className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()}
