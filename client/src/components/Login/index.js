@@ -19,6 +19,7 @@ class Login extends Component {
     render() {
         return (
             <div id="content">
+                <h2>Login</h2>
                 <form onSubmit={this.login}>
                     
                     <label htmlFor="username">Enter your username</label>

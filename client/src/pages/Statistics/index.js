@@ -1,8 +1,13 @@
-import React from "react"
+import React from "react";
 
-class Statistics extends React.Component
+class Statistics extends React.Component {
 render() {
     return (
-        <Statist
-    )
-}
+        <Statistics 
+        // 
+        />
+        )
+    }
+}   
+
+export default Statistics

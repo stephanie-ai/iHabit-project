@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AddHabit } from '../../components';
+// import { AddHabit } from './AddHabit';
 
 class Habits extends Component {
     state = { habits: [] }
@@ -7,17 +7,18 @@ class Habits extends Component {
     componentDidMount = () => this.fetchHabits();
 
     fetchHabits = async () => {
-        const resp = await fetch(`http://localhost:3000/allHabits`);
+        const resp = await fetch(`http://localhost:3000/habits`);
         const habits = await resp.json()
         this.setState({ habits })
     }
     
     render(){
-        const renderHabits = this.state.posts.map((p, idx) => <AddHabit key={idx} post={p} />)
+        // const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} />)
         
         return (
             <section id="habits">
-                { renderHabits }
+                <h3>Hello from habits page</h3>
+                {/* { renderHabits } */}
             </section>
         );
     }
