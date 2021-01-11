@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Login, Register } from '../../components';
-// import { Link } from 'react-router-dom';
 import './style.css';
 
 class Home extends Component {
@@ -8,18 +7,20 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          isLogginActive: true
-        };
+            isLoginOpen: true,
+            isRegisterOpen: false
+        }
     }
 
-    handleChange = () => {
-
+    showLoginBox() {
+        this.setState({isLoginOpen: true, isRegisterOpen: false});
+    }
+    
+    showRegisterBox() {
+        this.setState({isRegisterOpen: true, isLoginOpen: false});
     }
 
     render() {
-        const { isLogginActive } = this.state;
-        const current = isLogginActive ? "Register" : "Login";
-        const currentActive = isLogginActive ? "login" : "register";
         return (
             <div>
                 
@@ -32,47 +33,34 @@ class Home extends Component {
 
         <div id="homeRight" className="home">
             <div  className="centered">
-            <div className="container">
-            <div>
-                    <button onClick={this.handleChange}>Login or Register</button>
-                </div>
+                <div className="container">
+                    <div className="box-controller">
 
-                {isLogginActive && (
-                <Login current={current} currentActive={currentActive}  />
-                )}
-                {!isLogginActive && (
-                <Register />
-                )}
+                        <button
+                            className={"controller " + (this.state.isLoginOpen
+                            ? "selected-controller"
+                            : "")}
+                            onClick={this.showLoginBox.bind(this)}>
+                            Login
+                        </button>
+
+                        <button
+                            className={"controller " + (this.state.isRegisterOpen
+                            ? "selected-controller"
+                            : "")}
+                            onClick={this.showRegisterBox.bind(this)}>
+                            Register
+                        </button>
+                    </div>
+                    <div>
+                        { this.state.isLoginOpen ? 
+                        <Login /> : <Register /> }
+                    </div>
+                </div>
+                </div>
             </div>
-             {/* onClick={this.changeState.bind} */}
-            </div>
-        </div>
         </div>
     );
-
-        // return (
-        //     <div>
-        //         <div id="homeLeft" className="home">
-        //             <div className="centered">
-        //                 <h1>Welcome to iHabit</h1>
-        //                 <p>Keep track of your habits here on a daily or weekly basis.</p>
-        //             </div>
-        //         </div>
-        //         <div id="homeRight" className="home">
-        //             <div className="centered">
-        //             {/* <Login /> */}
-        //             {/* <Route exact path='/login' component={Login} /> 
-        //             <Route path='/register' component={Register} /> */}
-                        
-        //             <button onClick={this.login}>Login</button>
-        //             <button>Register</button>
-        //             <br></br>
-        //             <Link to='/login' >Login</Link>
-        //             <Link to='/register' >Register</Link>
-        //         </div>
-        //         </div>
-        //     </div>
-        // )
     }
 }
 
