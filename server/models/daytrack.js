@@ -29,6 +29,9 @@ class Daytrack {
         })
     }
 
+    // Create Habit for new day
+    //static
+
     static findById(id) {
         return new Promise (async (resolve, reject) => {
             try {
