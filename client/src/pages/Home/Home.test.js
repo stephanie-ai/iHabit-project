@@ -5,5 +5,5 @@ describe('Home', () => {
 
     beforeEach(() => {
         component = shallow(<Home />);
-        
+        })
     })

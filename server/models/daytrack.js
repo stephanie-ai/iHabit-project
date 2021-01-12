@@ -2,6 +2,7 @@ const SQL = require("sql-template-strings");
 const db = require('../db/config');
 
 const moment = require('moment');
+const Habit = require("./habit");
 
 
 class Daytrack {
@@ -19,10 +20,21 @@ class Daytrack {
     static all(id){
         return new Promise (async (resolve, reject) => {
             try {
+                const todate = moment().format().toString();
                 const result = await db.run(SQL`SELECT * FROM daytrack 
-                                                    WHERE user_id = ${id};`);
+                                                    WHERE user_id = ${id}
+                                                    AND
+                                                    currentdate = ${todate};`);
                 const dailyhabits = result.rows.map(a => new Daytrack(a));
-                resolve(dailyhabits);
+                let data;
+                
+                if(dailyhabits.length === 0){
+                    data = await Daytrack.createNewDay(id);
+                }else{
+                    data = dailyhabits
+                }
+                
+                resolve(data);
             }catch(err){
                 reject('daily habits could not be found.')
             }
@@ -30,7 +42,22 @@ class Daytrack {
     }
 
     // Create Habit for new day
-    //static
+    static createNewDay(id){
+        return new Promise (async (resolve, reject) => {
+            try{
+                let allHabits = await db.run(SQL`SELECT * FROM habits WHERE user_id = ${id};`);
+                
+                let enterHabit = await allHabits.rows.map(async h => await Daytrack.createNewHabit(h.id, h.user_id, h.daily_track));
+                
+
+                resolve(enterHabit);
+            }catch(err){
+                reject('could not create todays habits');
+            }
+        })
+    };
+
+    
 
     static findById(id) {
         return new Promise (async (resolve, reject) => {
