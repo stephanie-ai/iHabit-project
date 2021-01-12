@@ -6,8 +6,8 @@ VALUES
 
 INSERT INTO habits (habit, weekly_track, daily_track, user_id)
 VALUES
-    ('drink water', 7, 5, 1),
-    ('drink water', 7, 5, 2),
+    ('drink water', 7, 5, 4),
+    ('drink water', 7, 5, 5),
     ('exercise', 4, 1, 2);
 
 INSERT INTO daytrack (habit_id, user_id, completion, day, currentdate, streak, streak_day)

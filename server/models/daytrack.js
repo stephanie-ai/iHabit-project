@@ -32,16 +32,56 @@ class Daytrack {
     static findById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-                console.log('problem ahoy');
                 let dailyHabitData = await db.run(SQL`SELECT * FROM daytrack WHERE habit_id = ${id};`);
                 let dailyHabit = new Daytrack(dailyHabitData.rows[0]);
+                
                 console.log('solution ahoy');
+                
                 resolve(dailyHabit); 
             } catch (err) {
                 reject("Daily habit has not been found");
             }
         })
     };
+
+    static findUserAndHabit(userid, habitid){
+        return new Promise(async (resolve, reject) => {
+            try{
+                const habit = await db.run(SQL`SELECT * FROM daytrack 
+                                            WHERE 
+                                                user_id = ${userid} 
+                                            AND habit_id = ${habitid};`);
+                const foundHabit = new Daytrack(habit.rows[0]);
+                resolve(foundHabit);
+            }catch(err){
+                reject(`Habitid ${habitid} with userid ${userid} could not be found`);
+            }
+        })
+    };
+
+    didHabit(id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const habit = await db.run(SQL`UPDATE daytrack SET completion= completion-1
+                                                WHERE id = ${id};`);
+                resolve('update completed');
+            } catch (err) {
+                reject('Habit has not been completed');
+            }
+        })
+    };
+
+    completeHabit(id) {
+        return new Promise(async (res, rej) => {
+            try {
+                const habit = await db.run(SQL`UPDATE daytrack SET streak = TRUE, streak_day = streak_day + 1 
+                WHERE id = ${id};`)
+                res('Streak set');
+            } catch (err) {
+                rej('Streak has not been set')
+            }
+        })
+    }
     
     // weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     // weekdays[Date.getDay()]
