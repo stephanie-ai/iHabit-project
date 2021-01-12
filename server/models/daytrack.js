@@ -32,9 +32,9 @@ class Daytrack {
     static createNewHabit(habitId, userId, dailyNum) {
         return new Promise (async (resolve, reject) => {
             try {
-                const date= (new Date().toLocaleDateString("en-DK")).toString();
+                const date= (new Date().toISOString().slice(0,10).split('-').reverse().join('/')).toString();
                 const day = new Date().toDateString().slice(0,4);
-                console.log(date, day);
+                //console.log(date, day);
                 let habitData = await db.run(SQL`INSERT INTO daytrack (habit_id, user_id, completion, day, currentdate, streak, streak_day)
                                                     VALUES (
                                                         ${habitId},
@@ -44,7 +44,7 @@ class Daytrack {
                                                         ${date},
                                                         FALSE,
                                                         0) RETURNING *;`);
-                console.log("end line");
+                //console.log("end line");
                 // let newDayHabit = new Daytrack(habitData.rows[0]);
                 // resolve(newDayHabit);
                 resolve (habitData.rows[0]);

@@ -37,13 +37,15 @@ class Weektrack {
     static createNewHabit(habitId, userId){
         return new Promise (async (resolve, reject) => {
             try {
-                const habitData = await db.run(SQL`INSERT INTO daytrack (habit_id, user_id, completion_average, start_date)
-                                        VALUES 
+                const startDate = new Date()
+                console.log('new problem ahoy');
+                const habitData = await db.run(SQL`INSERT INTO weektrack (habit_id, user_id, completion_average, start_date)
+                                        VALUES (
                                             ${habitId},
                                             ${userId},
-                                            ${0},
-                                            ${m.startOf('isoWeek')}
-                                        ;`);
+                                            0,
+                                            ${startDate}
+                                        ) RETURNING *;`);
                 resolve (habitData.rows[0]);
             } catch (err) {
                 reject('New weektrack habit could not be created')
