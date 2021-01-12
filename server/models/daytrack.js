@@ -1,6 +1,9 @@
 const SQL = require("sql-template-strings");
 const db = require('../db/config');
 
+const moment = require('moment');
+
+
 class Daytrack {
     constructor(data){
         this.id = data.id;
@@ -10,7 +13,7 @@ class Daytrack {
         this.day = data.day;
         this.currentdate = data.currentdate;
         this.streak = data.streak;
-        this.streakDay = data.streakDay;
+        this.streakDay = data.streak_day;
     }
 
     static all(id){
@@ -25,6 +28,20 @@ class Daytrack {
             }
         })
     }
+
+    static findById(id) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                console.log('problem ahoy');
+                let dailyHabitData = await db.run(SQL`SELECT * FROM daytrack WHERE habit_id = ${id};`);
+                let dailyHabit = new Daytrack(dailyHabitData.rows[0]);
+                console.log('solution ahoy');
+                resolve(dailyHabit); 
+            } catch (err) {
+                reject("Daily habit has not been found");
+            }
+        })
+    };
     
     // weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     // weekdays[Date.getDay()]
@@ -32,7 +49,7 @@ class Daytrack {
     static createNewHabit(habitId, userId, dailyNum) {
         return new Promise (async (resolve, reject) => {
             try {
-                const date= (new Date().toISOString().slice(0,10).split('-').reverse().join('/')).toString();
+                const date= moment().format().toString();
                 const day = new Date().toDateString().slice(0,4);
                 //console.log(date, day);
                 let habitData = await db.run(SQL`INSERT INTO daytrack (habit_id, user_id, completion, day, currentdate, streak, streak_day)
@@ -52,6 +69,20 @@ class Daytrack {
                 reject ('New daytrack habit couldnt be created')
             }
         })
-    }
+    };
+
+    destroy(id){
+        return new Promise( async(resolve, reject)=> {
+            try{
+                const result = await db.run(SQL`DELETE FROM daytrack WHERE id = ${id};`);
+                resolve('Daily habit has been deleted');
+            }catch(err){
+                reject('Daily habit could not be deleted')
+            }
+        })
+    };
+
+
 }
+
 module.exports = Daytrack

@@ -20,6 +20,17 @@ router.post('/', async (req, res) =>{
     }catch (err) {
         res.status(500).json({err});
     }
+});
+
+router.delete('/:id', async (req, res)=>{
+    try{
+        const habit = await Habit.findById(parseInt(req.params.id));
+        //console.log(req.params.id);
+        const resp = await habit.destroy();
+        res.status(204).json('habit was deleted');
+    }catch (err) {
+        res.status(404).json({err});
+    }
 })
 
-module.exports = router
+module.exports = router;

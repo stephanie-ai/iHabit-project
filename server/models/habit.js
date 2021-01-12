@@ -20,12 +20,26 @@ class Habit {
         return new Promise (async (resolve, reject) => {
             try {
                 const result = await db.run(SQL`SELECT * FROM habits WHERE user_id = ${id};`);
-                const habits = result.rows.map(a => new Habit(a))
-                resolve(habits)
+                const habits = result.rows.map(a => new Habit(a));
+                resolve(habits);
             }catch(err){
-                reject("Users habits could not be found.")
+                reject("Users habits could not be found.");
             }
         })
+    }
+
+    static findById(id) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                console.log('over here')
+                let habitData = await db.run(SQL`SELECT * FROM habits WHERE id = ${id};`);
+                //console.log(habitData);
+                let habit = new Habit(habitData.rows[0]);
+                resolve(habit);
+            } catch (err) {
+                reject("Habit has not been found");
+            }
+        } )
     }
 
     static create({habit, user, weeklyNum, dailyNum}){
@@ -43,10 +57,32 @@ class Habit {
 
                 resolve (result.rows[0]);
             }catch (err){
-                reject ('Habit could not be created')
+                reject ('Habit could not be created');
             }
         });
     };
+
+    destroy(){
+        return new Promise(async(resolve, reject) => {
+            try{
+                
+                const result = await db.run(SQL`DELETE FROM habits WHERE id = ${this.id};`);
+                
+                const findday = await Daytrack.findById(this.id);
+                console.log(findday);
+                const removeDay = await findday.destroy(findday.id);
+
+                const findweek = await Weektrack.findById(this.id);
+                console.log(findweek);
+
+                const removeWeek = await findweek.destroy(findweek.id);
+
+                resolve(`Habit with id ${this.id} was deleted`);
+            }catch(err){
+                reject('Habit could not be deleted');
+            }
+        })
+    }
 }
-module.exports = Habit
+module.exports = Habit;
 
