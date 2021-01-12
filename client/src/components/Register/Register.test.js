@@ -18,6 +18,25 @@ describe('Register', () => {
         expect(instance['state']).toEqual({"username": "", "password": "", "passwordConfirmation": ""})
     })
 
+    test('it renders a form', () => {
+        form = component.find('form');
+        expect(form).toHaveLength(1);
+    })
+
+    test('it renders a form with four inputs', () => {
+            form = component.find('form');
+            expect(form).toHaveLength(1);
+            inputs = form.find('input')
+            expect(inputs).toHaveLength(4);
+        });
+
+    test('it renders a form with a submit input', () => {
+            form = component.find('form');
+            expect(form).toHaveLength(1);
+            inputs = form.find('input')
+            expect(inputs).toHaveLength(3);
+    })
+})
     test('it renders the title', () => {
         expect(component.find('h2').text()).toContain('Create an Account');
     });
@@ -28,4 +47,3 @@ describe('Register', () => {
        expect(component.state)
     });
     
-})

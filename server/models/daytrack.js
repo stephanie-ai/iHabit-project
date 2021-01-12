@@ -3,6 +3,7 @@ const db = require('../db/config');
 
 const moment = require('moment');
 const Habit = require("./habit");
+const e = require("express");
 
 
 class Daytrack {
@@ -25,6 +26,7 @@ class Daytrack {
                                                     WHERE user_id = ${id}
                                                     AND
                                                     currentdate = ${todate};`);
+                
                 const dailyhabits = result.rows.map(a => new Daytrack(a));
                 let data;
                 
@@ -115,13 +117,45 @@ class Daytrack {
     
     // weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     // weekdays[Date.getDay()]
+
+    static prevDay(user, habit){
+        return new Promise (async (resolve, reject) => {
+            try{
+                const prevDate = moment().format('L').toString();
+                console.log('1', prevDate);
+
+                const result = await db.run(SQL`SELECT * FROM daytrack WHERE (user_id = ${user}) AND (habit_id = ${2}) ORDER BY currentdate DESC LIMIT 1;`);
+
+                console.log(result.rows[0]);
+                let data= {
+                    streak: null,
+                    streak_day}
+                if(result.rows.length > 0){
+                    data.streak = result.rows.streak;
+                    data.streak_day = result.rows.streak_day;
+                }else {
+                    data.streak = FALSE;
+                    data.streak_day = 0;
+                }
+                resolve(data);
+            }catch(err){
+                reject('yestardays data could not be found')
+            }
+        })
+    }
     
     static createNewHabit(habitId, userId, dailyNum) {
         return new Promise (async (resolve, reject) => {
             try {
                 const date= moment().format().toString();
+                //console.log('line 145', date);
                 const day = new Date().toDateString().slice(0,4);
-                //console.log(date, day);
+
+                let streak = await Daytrack.prevDay(userId, habitId);
+
+                console.log('2');
+                
+                console.log('line 151', streak);
                 let habitData = await db.run(SQL`INSERT INTO daytrack (habit_id, user_id, completion, day, currentdate, streak, streak_day)
                                                     VALUES (
                                                         ${habitId},
@@ -129,8 +163,8 @@ class Daytrack {
                                                         ${dailyNum},
                                                         ${day},
                                                         ${date},
-                                                        FALSE,
-                                                        0) RETURNING *;`);
+                                                        ${streak.streak},
+                                                        ${streak.streak_day}) RETURNING *;`);
                 //console.log("end line");
                 // let newDayHabit = new Daytrack(habitData.rows[0]);
                 // resolve(newDayHabit);
@@ -140,6 +174,8 @@ class Daytrack {
             }
         })
     };
+
+    // function that checks streak based on previous day, select everything from daytrack table
 
     destroy(id){
         return new Promise( async(resolve, reject)=> {

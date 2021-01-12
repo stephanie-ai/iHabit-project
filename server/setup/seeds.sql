@@ -12,8 +12,8 @@ VALUES
 
 INSERT INTO daytrack (habit_id, user_id, completion, day, currentdate, streak, streak_day)
 VALUES
-    (1, 1, 0, 'MON', '11/01/2021', FALSE, 0),
-    (2, 2, 1, 'MON', '11/01/2021', FALSE, 0),
+    (1, 1, 0, 'MON', '11/01/2021', TRUE, 0),
+    (2, 2, 1, 'MON', '11/01/2021', TRUE, 4),
     (3, 2, 1, 'MON', '11/01/2021', FALSE, 0);
 
 

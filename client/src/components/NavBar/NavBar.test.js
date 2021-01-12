@@ -4,7 +4,7 @@ describe('NavBar', () => {
 let component;
 
 beforeEach(() => {
-    component = shallow(<Register />)
+    component = shallow(<NavBar />)
 })
 
 test('it renders', () => {
@@ -15,10 +15,13 @@ test('it has 3 NavLinks', () => {
     expect(component.find('NavLink')).toHaveLength(3);
 });
 
-test ('it has a Logout button', () => {
+test('it renders a button', () => {
     const button = component.find('button');
     expect(button).toHaveLength(1);
-    button.stimulate('click');
-    expect
+});
+test ('it has a Logout button', () => {
+    let logoutbtn = component.find('#logoutbtn')
+    logoutbtn.stimulate('click', preventDefault)
+    expect(component.find())
 })
 })

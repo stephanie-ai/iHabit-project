@@ -42,7 +42,7 @@ class Weektrack {
         return new Promise (async (resolve, reject) => {
             try {
                 const startDate = moment().startOf("isoWeek").toString();
-                console.log(startDate);
+                // console.log(startDate);
                 const habitData = await db.run(SQL`INSERT INTO weektrack (habit_id, user_id, completion_average, start_date)
                                         VALUES (
                                             ${habitId},

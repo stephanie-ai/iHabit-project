@@ -50,10 +50,10 @@ class Habit {
                 //console.log(result.rows[0].id);
 
                 let daynum = await Daytrack.createNewHabit(result.rows[0].id, user, dailyNum);
-                console.log(daynum);
+                //console.log(daynum);
 
                 let weeknum = await Weektrack.createNewHabit(result.rows[0].id, user);
-                console.log(weeknum);
+                //console.log(weeknum);
 
                 resolve (result.rows[0]);
             }catch (err){
