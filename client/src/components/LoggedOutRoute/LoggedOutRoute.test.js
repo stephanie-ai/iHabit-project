@@ -12,4 +12,5 @@ describe('LoggedOutRoute', () => {
     })
     
     test('it redirects to /habits')
+    expect()
 })
