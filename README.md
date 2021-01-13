@@ -28,6 +28,6 @@ To run the project:
 
 # Wins & Challenges
 
-# Contributers
+# Contributors
 
 @rajtandel21 @stephanie-ai @Tempestx4 @GeriNZ @FopeA6
