@@ -18,9 +18,4 @@ test('it exists', () => {
 })
 
 test('it has 3 NavLinks', () => {
-test ('it has a Logout button', () => {
-    let logoutbtn = component.find('#logoutbtn')
-    logoutbtn.stimulate('click', preventDefault)
-    expect(component.find())
-})
 })
