@@ -1,21 +1,28 @@
-import NavBar from '.';
+import { default as NavBar } from '.';
 import { shallow } from 'enzyme';
-import { component } from 'react';
 
 describe('NavBar', () => {
-let component;
+let wrapper;
 
 beforeEach(() => {
-    component = shallow(<NavBar />)
+    wrapper = shallow(<NavBar.WrappedComponent />)
 })
 
 test('it renders', () => {
-    expect(component.find('nav')).toHaveLength(1);
-});
-
-test('it exists', () => {
-    expect(component.find('NavBar').exists()).toBeTruthy();
+    expect(wrapper.find('nav')).toHaveLength(1);
 })
 
+// test('it exists', () => {
+//     expect(wrapper.find('NavBar').toexist());
+// })
+
 test('it has 3 NavLinks', () => {
+    expect(wrapper.find('NavLink')).toHaveLength(3)
+})
+test('it has a logout button', () => {
+    const button = wrapper.find('button');
+    expect(button).toHaveLength(1);
+    button.stimulate('click');
+    expect
+})
 })

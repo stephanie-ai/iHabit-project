@@ -44,7 +44,7 @@ class App extends Component {
                   <LoggedOutRoute path='/login' isLoggedIn={this.state.isLoggedIn} component={Login} />
                   <LoggedOutRoute path='/register' isLoggedIn={this.state.isLoggedIn} component={Register} /> 
                   <PrivateRoute path='/habits' isLoggedIn={this.state.isLoggedIn} component={()=> <Habits user={this.state.currentUser}/>} />
-                  <PrivateRoute path='/statistics' isLoggedIn={this.state.isLoggedIn} component={Statistics} />
+                  <PrivateRoute path='/statistics' isLoggedIn={this.state.isLoggedIn} component={() => <Statistics user={this.state.currentUser} />} />
               </Switch>
           </main>
       )

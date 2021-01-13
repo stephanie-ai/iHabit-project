@@ -37,9 +37,9 @@ class Habits extends Component {
                 dailyNum: e.target.dailyCount.value
             })
         }
-        const sendData = await fetch(`http://localhost:3000/habit/${this.props.user.userId}`, options);
+        const sendData = await fetch(`http://localhost:3000/habit/`, options);
         const res = await sendData.json();
-        if (data.err){ throw Error(data.err) }
+        if (res.err){ throw Error(res.err) }
         this.fetchHabits();
     }
     
@@ -65,6 +65,7 @@ class Habits extends Component {
                 <h3>Hello from habits page</h3>
                 <button id="plushabit" onClick={this.habitForm}>+</button>
                 { this.state.enterHabit ? newhabit : null }
+                <p>All your habits:</p>
                 { renderHabits }
             </section>
         );

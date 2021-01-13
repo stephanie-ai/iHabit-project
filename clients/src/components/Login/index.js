@@ -24,10 +24,10 @@ class Login extends Component {
                 <form onSubmit={this.login}>
                     
                     <label htmlFor="username">Enter your username</label>
-                    <input type="username" name="username" value={this.state.username} onChange={this.handleInput} />
+                    <input type="text" name="username" value={this.state.username} onChange={this.handleInput} />
 
                     <label htmlFor="password">Enter your password</label>
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleInput} />
+                    <input type="text" name="password" value={this.state.password} onChange={this.handleInput} />
 
                     <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Login" />
 

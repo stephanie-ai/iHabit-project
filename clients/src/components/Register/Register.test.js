@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { component } from 'react';
 
 describe('Register', () => {
-    let component, form, instance, inputs;
+    let component, form, instance;
     let fakeEvent = { preventDefault: () => 'fake', target: {name: 'username', value: 1}}
     let preventDefault = { preventDefault: () => 'fake' }
 
@@ -13,10 +13,6 @@ describe('Register', () => {
 
     test('it renders', () => {
         expect(component.find('div')).toHaveLength(1)
-    })
-
-    test('it exists', () => {
-        expect(component.find('Register').exists()).toBeTruthy();
     })
 
     test('it has a state', () => {
@@ -29,27 +25,22 @@ describe('Register', () => {
         expect(form).toHaveLength(1);
     })
 
-    test('it renders a form with four inputs', () => {
-            form = component.find('form');
-            expect(form).toHaveLength(1);
-            inputs = form.find('input')
-            expect(inputs).toHaveLength(4);
-        });
-
-    test('it renders a form with a submit input', () => {
-            form = component.find('form');
-            expect(form).toHaveLength(1);
-            inputs = form.find('input')
-            expect(inputs).toHaveLength(3);
-    })
-})
     test('it renders the title', () => {
         expect(component.find('h2').text()).toContain('Create an Account');
     });
-
-    test('it should create an account', () => {
-       form = component.find ('form')
-       form.stimulate ('submit', fakeEvent)
-       expect(component.state)
-    });
     
+    test('it renders a form with three text inputs and a submit', () => {
+        form = wrapper.find('form');
+        expect(form).toHaveLength(1);
+        const inputs = form.find('input')
+        expect(inputs).toHaveLength(4);
+        expect(inputs.first().props().type).toBe('text');
+    })
+   
+    test('it calls on register prop on form submission', () => {
+        form = component.find('form');
+        component.setState({username: "bob",password: "enter",passwordConfirmation "enter"});
+        form.stimulate('submit', {preventDefault: jest.FocusNavigationEvent() });
+        expect(registerMock).toHaveBeenNthCalledWith(1, 'bob', 'enter', 'enter');
+    })
+})

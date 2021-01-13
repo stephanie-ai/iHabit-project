@@ -1,55 +1,48 @@
 import AddHabit from '.';
 import { shallow } from 'enzyme';
-import { component } from 'react';
 
 describe('AddHabit', () => {
-    let component, form, habit;
+    let wrapper, form, habit;
 
     beforeEach(() => {
-        component = shallow(<AddHabit />);
+        wrapper = shallow(<AddHabit />);
         })
 
         test('it exists', () => {
-            expect(component.find('AddHabit').toexist())
+            const AddHabit = wrapper.find('AddHabit')
+            expect(wrapper.find('AddHabit').exists()).toBeTruthy()
         })
-
         test('it renders', () => {
-            expect(component.find('div')).toHaveLength(1)
+            expect(wrapper.find('div')).toHaveLength(1)
         })
 
         test('it renders 2 paragraphs', () => {
-            const pTag = component.find('p');
+            const pTag = wrapper.find('p');
             expect(pTag).toHaveLength(2)
         })
 
         test('it renders a paragraph with text', () => {
-            expect(component.find('#p1').text()).toContain('Complete per Week:')
+            expect(wrapper.find('#p1').text()).toContain('Complete per Week:')
         })
 
         test('it renders a paragraph with text', () => {
-            expect(component.find('#p2').text()).toContain('Complete per Day:')
+            expect(wrapper.find('#p2').text()).toContain('Complete per Day:')
         })
     
         test('it renders the title', () => {
-            expect(component.find('h3').text()).toContain('Hello from AddHabit');
+            expect(wrapper.find('h3').text()).toContain('Hello from AddHabit');
         })
         
         test('it renders a form', () => {
-            form = component.find('form');
+            form = wrapper.find('form');
             expect(form).toHaveLength(1);
         })
 
-        test('it renders a form with four inputs', () => {
-                form = component.find('form');
+        test('it renders a form with three text inputs and a submit', () => {
+                form = wrapper.find('form');
                 expect(form).toHaveLength(1);
-                inputs = form.find('input')
+                const inputs = form.find('input')
                 expect(inputs).toHaveLength(4);
+                expect(inputs.first().props().type).toBe('text');
             });
-
-        test('it renders a form with a submit input', () => {
-                form = component.find('form');
-                expect(form).toHaveLength(1);
-                inputs = form.find('input')
-                expect(inputs).toHaveLength(3);
-        })
     })
