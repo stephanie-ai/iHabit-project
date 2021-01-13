@@ -54,9 +54,9 @@ render() {
     return (
         <div>
             <h2> Hello from Statistics page </h2>
-            <h3>Daily habits stats</h3>
+            <h3 id ="daily">Daily habits stats</h3>
             { renderDailyData }
-            <h3>Weekly habits stats</h3>
+            <h3 id="weekly">Weekly habits stats</h3>
             { renderWeeklyData }
         </div>
         )

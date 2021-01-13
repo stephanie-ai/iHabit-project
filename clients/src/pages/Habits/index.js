@@ -45,7 +45,7 @@ class Habits extends Component {
     
     render(){
         const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} />)
-        const newhabit = (<div>
+        const newhabit = (<div id = 'newhabit'>
                 <form onSubmit={this.createHabit}>
                     <label htmlFor="habitName">Habit name:</label>
                     <input type="text" name="habitName" />
