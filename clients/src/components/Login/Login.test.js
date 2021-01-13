@@ -4,6 +4,7 @@ import { component } from 'react';
 
 describe('Login', () => {
     let component, loginMock, form;
+    const fakeEvent = { preventDefault: () => "do nothing" };
     
     beforeEach(() => {
         loginMock = jest.fn()
@@ -20,7 +21,7 @@ describe('Login', () => {
     })
 
     test('it renders a form with two text inputs and a submit', () => {
-        form = wrapper.find('form');
+        form = component.find('form');
         expect(form).toHaveLength(1);
         const inputs = form.find('input')
         expect(inputs).toHaveLength(3);
@@ -32,7 +33,8 @@ describe('Login', () => {
     test('it calls on login prop on form submission', () => {
         form = component.find('form');
         component.setState({username: "bob",password: "enter"});
-        form.stimulate('submit', {preventDefault: jest.FocusNavigationEvent() });
+        form.simulate("submit", fakeEvent);
         expect(loginMock).toHaveBeenNthCalledWith(1, 'bob', 'enter');
-    })
+        
+ })
 })

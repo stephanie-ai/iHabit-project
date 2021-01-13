@@ -120,7 +120,7 @@ class Statistics extends Component {
             <div>
                 <div>
                     <table>
-                        <caption>Daily</caption>
+                        <caption id ="daily">Daily</caption>
                         <thead>
                             <tr>
                                 <th>Habit</th>
@@ -144,7 +144,7 @@ class Statistics extends Component {
                 </div>
                 <div>
                     <table>
-                        <caption>Weekly</caption>
+                        <caption id="weekly">Weekly</caption>
                         <thead>
                             <tr>
                                 <th>Habit</th>

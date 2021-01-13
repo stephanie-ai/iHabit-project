@@ -13,4 +13,6 @@ describe('App', () => {
         expect(component.find('#app')).toHaveLength(1);
     });
 
+    
+
 });
