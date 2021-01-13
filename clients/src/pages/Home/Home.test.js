@@ -1,7 +1,7 @@
 import Home from '.';
 
 describe('Home', () => {
-    let component;
+    let component, initState;
 
     beforeEach(() => {
         component = shallow(<Home />);
@@ -34,11 +34,19 @@ describe('Home', () => {
     //     expect (links).toHaveLength(1)
     // })
     
-    test('it setState from showLoginBox', () => {
-
+    test('it setState from showLoginBox on onClick', () => {
+        initState = component.setState({
+            isLoginOpen: true,
+            isRegisterOpen: false
+        })
+        let loginbtn = form.find('#loginbtn')
+        initProps = component.setProps({
+            isLoginOpen: true,
+            isRegisterOpen: false
+        })
     })
-    
-    test('it setState from showRegisterBox', () => {
+
+    test('it setState from showRegisterBox on onClick', () => {
         
     })
 })

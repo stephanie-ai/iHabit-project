@@ -37,7 +37,7 @@ class Home extends Component {
                 <div className="container">
                     <div className="box-controller">
 
-                        <button
+                        <button id="loginbtn"
                             className={"controller " + (this.state.isLoginOpen
                             ? "selected-controller"
                             : "")}
@@ -45,7 +45,7 @@ class Home extends Component {
                             Login
                         </button>
 
-                        <button
+                        <button id="registerbtn"
                             className={"controller " + (this.state.isRegisterOpen
                             ? "selected-controller"
                             : "")}
