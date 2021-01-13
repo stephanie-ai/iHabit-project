@@ -1,4 +1,6 @@
 import Login from '.';
+import { shallow } from 'enzyme';
+import { component } from 'react';
 
 describe('Login', () => {
     let component, form;

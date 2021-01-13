@@ -1,10 +1,16 @@
 import Habits from  '.';
+import { shallow } from 'enzyme';
+import { component } from 'react';
 
 describe('Habits', () => {
     let component;
 
     beforeEach(() => {
         component = shallow(<Habits />);
+    })
+
+    test('it exists', () => {
+        expect(component.find('Habits').exists()).toBeTruthy();
     })
 
     test('it renders', () => {
@@ -16,9 +22,6 @@ describe('Habits', () => {
     });
 
     test('it has a plushabit button', () => {
-        const button = component.find('button');
-        expect(button).toHaveLength(1);
-        button.stimulate('click');
-        expect
+        component.find('button').stimulate('click');
     })
 })

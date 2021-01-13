@@ -54,7 +54,7 @@ class Home extends Component {
                     </div>
                     <div>
                         { this.state.isLoginOpen ? 
-                        <Login /> : <Register /> }
+                        <Login login={this.props.login}/> : <Register login={this.props.login}/> }
                     </div>
                 </div>
                 </div>

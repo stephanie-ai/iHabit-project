@@ -1,4 +1,6 @@
 import LoggedOutRoute from '.';
+import { shallow } from 'enzyme';
+import { component } from 'react';
 
 describe('LoggedOutRoute', () => {
     let component;

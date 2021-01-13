@@ -31,7 +31,7 @@ class Habit {
     static findById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-                console.log('over here')
+                //console.log('over here')
                 let habitData = await db.run(SQL`SELECT * FROM habits WHERE id = ${id};`);
                 //console.log(habitData);
                 let habit = new Habit(habitData.rows[0]);

@@ -1,4 +1,6 @@
 import Register from '.';
+import { shallow } from 'enzyme';
+import { component } from 'react';
 
 describe('Register', () => {
     let component, form;

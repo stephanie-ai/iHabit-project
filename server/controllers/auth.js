@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
         }
         const authed = await bcrypt.compare(req.body.password, user.passwordDigest);
         if (authed) {
-            res.status(200).json({ user });
+            res.status(200).json({userId: user.id, userName: user.username});
         } else {
             throw new Error('User could not be authenticated');
         }
