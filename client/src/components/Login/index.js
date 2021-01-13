@@ -13,6 +13,7 @@ class Login extends Component {
 
     login = e => {
         e.preventDefault();
+        console.log(this.props);
         this.props.login(this.state);
     }
 

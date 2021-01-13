@@ -118,44 +118,58 @@ class Daytrack {
     // weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     // weekdays[Date.getDay()]
 
-    static prevDay(user, habit){
-        return new Promise (async (resolve, reject) => {
-            try{
-                const prevDate = moment().format('L').toString();
-                console.log('1', prevDate);
+    // static prevDay(user, habit){
+    //     return new Promise (async (resolve, reject) => {
+    //         try{
+    //             const prevDate = moment().format('YYYY-MM-DD');
+    //             const jointable = await db.run(SQL`SELECT habits.habit, daytrack.user_id, daytrack.currentdate FROM daytrack
+    //                                                 INNER JOIN habits
+    //                                                     ON habits.user_id = daytrack.user_id
+    //                                                     WHERE habits.habit = ${habit}
+    //                                                     AND daytrack.currentdate < ${prevDate}`);
+                
+    //             console.log(jointable.rows);
 
-                const result = await db.run(SQL`SELECT * FROM daytrack WHERE (user_id = ${user}) AND (habit_id = ${2}) ORDER BY currentdate DESC LIMIT 1;`);
+    //             const lastHabitid = await db.run(SQL`SELECT * FROM habits WHERE habit = ${habit} AND user_id = ${user} ORDER BY habit DESC LIMIT 2;`);
+                
+    //             let habitid = lastHabitid.rows[1].id;
+    //             //I increased the limit to 2 and picked the second val because the first one might be the one being created right now.
+    //             //console.log(habitid);
 
-                console.log(result.rows[0]);
-                let data= {
-                    streak: null,
-                    streak_day}
-                if(result.rows.length > 0){
-                    data.streak = result.rows.streak;
-                    data.streak_day = result.rows.streak_day;
-                }else {
-                    data.streak = FALSE;
-                    data.streak_day = 0;
-                }
-                resolve(data);
-            }catch(err){
-                reject('yestardays data could not be found')
-            }
-        })
-    }
+    //             let result = await db.run(SQL`SELECT * FROM daytrack WHERE (user_id = ${user}) AND (habit_id < ${habitid}) ORDER BY currentdate DESC LIMIT 1;`);
+    //             //if you change the habitid NOT CAPITAL Id to 2 it will work.
+    //             //console.log(result)
+    //             let data= {
+    //                 streak: null,
+    //                 streak_day: null}
+    //             if(result.rowCount > 0){
+    //                 data.streak = result.rows[0].streak;
+    //                 data.streak_day = result.rows[0].streak_day;
+    //             }else {
+    //                 data.streak = FALSE;
+    //                 data.streak_day = 0;
+    //             }
+
+    //             //console.log(result.rows[0].currentdate, prevDate);
+    //             resolve(data);
+    //         }catch(err){
+    //             reject('yestardays data could not be found')
+    //         }
+    //     })
+    // }
     
-    static createNewHabit(habitId, userId, dailyNum) {
+    static createNewHabit(habitId, userId, dailyNum, habit) {
         return new Promise (async (resolve, reject) => {
             try {
                 const date= moment().format().toString();
                 //console.log('line 145', date);
                 const day = new Date().toDateString().slice(0,4);
 
-                let streak = await Daytrack.prevDay(userId, habitId);
+                // let streak = await Daytrack.prevDay(userId, habit);
 
-                console.log('2');
+                //console.log('2');
                 
-                console.log('line 151', streak);
+                //console.log('line 151', streak);
                 let habitData = await db.run(SQL`INSERT INTO daytrack (habit_id, user_id, completion, day, currentdate, streak, streak_day)
                                                     VALUES (
                                                         ${habitId},
@@ -163,8 +177,8 @@ class Daytrack {
                                                         ${dailyNum},
                                                         ${day},
                                                         ${date},
-                                                        ${streak.streak},
-                                                        ${streak.streak_day}) RETURNING *;`);
+                                                        FALSE,
+                                                        0) RETURNING *;`);
                 //console.log("end line");
                 // let newDayHabit = new Daytrack(habitData.rows[0]);
                 // resolve(newDayHabit);

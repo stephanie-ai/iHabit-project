@@ -49,13 +49,13 @@ class Habit {
                                                     VALUES (${habit}, ${user}, ${weeklyNum}, ${dailyNum}) RETURNING *;`);
                 //console.log(result.rows[0].id);
 
-                let daynum = await Daytrack.createNewHabit(result.rows[0].id, user, dailyNum);
+                let daynum = await Daytrack.createNewHabit(result.rows[0].id, user, dailyNum, habit);
                 //console.log(daynum);
 
                 let weeknum = await Weektrack.createNewHabit(result.rows[0].id, user);
                 //console.log(weeknum);
 
-                resolve (result.rows[0]);
+                resolve ([result.rows[0], daynum, weeknum]);
             }catch (err){
                 reject ('Habit could not be created');
             }

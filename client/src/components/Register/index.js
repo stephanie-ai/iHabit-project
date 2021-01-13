@@ -12,32 +12,32 @@ class Register extends Component {
 
     formIncomplete = () => Object.values(this.state).some(v => !v) || this.state.password !== this.state.passwordConfirmation
 
-    // register = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const userData = {
-    //             username: this.state.username,
-    //             password: this.state.password
-    //         }
-    //         const options = {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(userData)
-    //         }
-    //         const r = await fetch(`http://localhost:3000/register`, options);
-    //         const data = await r.json();
-    //         if (data.err) { throw Error(data.err) }
-    //         this.props.login(userData);
-    //         this.props.history.push('./habits')
-    //     } catch (err) {
-    //         console.warn(err);
-    //         this.setState({
-    //             username: "",
-    //             password: "",
-    //             passwordConfirmation: ""
-    //         })
-    //     }
-    // }
+    register = async (e) => {
+        e.preventDefault();
+        try {
+            const userData = {
+                username: this.state.username,
+                password: this.state.password
+            }
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            }
+            const r = await fetch(`http://localhost:3000/auth/register`, options);
+            const data = await r.json();
+            if (data.err) { throw Error(data.err) }
+            this.props.login(userData);
+            this.props.history.push('./habits')
+        } catch (err) {
+            console.warn(err);
+            this.setState({
+                username: "",
+                password: "",
+                passwordConfirmation: ""
+            })
+        }
+    }
 
     render() {
         return (

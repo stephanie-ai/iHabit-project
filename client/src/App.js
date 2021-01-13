@@ -9,22 +9,22 @@ class App extends Component {
         currentUser: {}
     }
 
-    // login = async (userData) => {
-    //     try {
-    //         const options = {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(userData)
-    //         }
-    //         const r = await fetch(`http://localhost:3000/auth/login`, options)
-    //         const data = await r.json()
-    //         if (data.err){ throw Error(data.err) }
-    //         this.setState({ isLoggedIn: true, currentUser: data.user })
-    //         this.props.history.push('./habits')
-    //     } catch (err) {
-    //         console.warn(`Error: ${err}`);
-    //     }
-    // }
+    login = async (userData) => {
+        try {
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            }
+            const r = await fetch(`http://localhost:3000/auth/login`, options)
+            const data = await r.json()
+            if (data.err){ throw Error(data.err) }
+            this.setState({ isLoggedIn: true, currentUser: data.user })
+            this.props.history.push('./habits')
+        } catch (err) {
+            console.warn(`Error: ${err}`);
+        }
+    }
 
     logout = () => {
         this.setState({ isLoggedIn: false })
