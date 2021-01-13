@@ -36,7 +36,15 @@ class Daytrack {
                     data = dailyhabits
                 }
                 
-                resolve(data);
+                const habitname = await db.run(SQL`SELECT daytrack.*, habits.habit as habitname FROM daytrack
+                                                    INNER JOIN habits
+                                                    ON habits.id = daytrack.habit_id
+                                                    WHERE daytrack.user_id = ${id}
+                                                    AND currentdate = ${todate};`);
+                
+                const returnData = habitname.rows;
+                console.log(habitname.rows);
+                resolve(returnData);
             }catch(err){
                 reject('daily habits could not be found.')
             }

@@ -14,10 +14,12 @@ class Weektrack {
     static all(id, date){
         return new Promise (async (resolve, reject) => {
             try {
-                const result = await db.run(SQL`SELECT * FROM weektrack 
-                                                    WHERE user_id = ${id}
-                                                    AND start_date = ${date};`)
-                const weeklyhabits = result.rows.map(a => new Weektrack(a))
+                const result = await db.run(SQL`SELECT weektrack.*, habits.habit as habitname FROM weektrack 
+                                                    INNER JOIN habits
+                                                    ON weektrack.habit_id = habits.id
+                                                    WHERE weektrack.user_id = ${id}
+                                                    AND start_date = ${date};`);
+                const weeklyhabits = result.rows;
                 resolve(weeklyhabits);
             }catch(err){
                 reject("Users habits could not be found for this week.")

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AddHabit from '../AddHabit';
-//import './style.css';
-//import '../../styles/index.css'
+import './style.css';
+import '../../styles/index.css'
 
 class Habits extends Component {
     state = { 
@@ -12,6 +12,7 @@ class Habits extends Component {
     componentDidMount(){
         this.fetchHabits();
     }
+    
 
     fetchHabits = async () => {
         const resp = await fetch(`http://localhost:3000/habit/${this.props.user.userId}`);
@@ -44,7 +45,7 @@ class Habits extends Component {
     }
     
     render(){
-        const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} />)
+        const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} index={idx}/>)
         const newhabit = (<div>
                 <form onSubmit={this.createHabit}>
                     <label htmlFor="habitName">Habit name:</label>
