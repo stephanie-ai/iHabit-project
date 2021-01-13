@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { component } from 'react';
 
 describe('Register', () => {
-    let component, form;
+    let component, form, instance, inputs;
     let fakeEvent = { preventDefault: () => 'fake', target: {name: 'username', value: 1}}
     let preventDefault = { preventDefault: () => 'fake' }
 
@@ -13,6 +13,10 @@ describe('Register', () => {
 
     test('it renders', () => {
         expect(component.find('div')).toHaveLength(1)
+    })
+
+    test('it exists', () => {
+        expect(component.find('Register').exists()).toBeTruthy();
     })
 
     test('it has a state', () => {

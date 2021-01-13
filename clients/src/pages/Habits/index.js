@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddHabit from '../AddHabit';
-import './style.css';
+//import './style.css';
+//import '../../styles/index.css'
 
 class Habits extends Component {
     state = { 
@@ -14,18 +15,38 @@ class Habits extends Component {
 
     fetchHabits = async () => {
         const resp = await fetch(`http://localhost:3000/habit/${this.props.user.userId}`);
-        const habits = await resp.json()
+        const habits = await resp.json();
+        if (habits.err){ throw Error(habits.err) }
         this.setState({ habits })
     }
 
     habitForm = () =>{
         this.setState(prevState => ({ enterHabit: !prevState.enterHabit}));
     }
+
+    createHabit = async (e) =>{
+        e.preventDefault();
+        console.log(e.target.habitName.value);
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                habit: e.target.habitName.value,
+                user: this.props.user.userId,
+                weeklyNum: e.target.daysPerWeek.value,
+                dailyNum: e.target.dailyCount.value
+            })
+        }
+        const sendData = await fetch(`http://localhost:3000/habit/${this.props.user.userId}`, options);
+        const res = await sendData.json();
+        if (data.err){ throw Error(data.err) }
+        this.fetchHabits();
+    }
     
     render(){
         const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} />)
         const newhabit = (<div>
-                <form>
+                <form onSubmit={this.createHabit}>
                     <label htmlFor="habitName">Habit name:</label>
                     <input type="text" name="habitName" />
 

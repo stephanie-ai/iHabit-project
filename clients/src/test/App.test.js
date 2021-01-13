@@ -1,15 +1,16 @@
-import App from '../App.js';
+import App from '../App';
 import { shallow } from 'enzyme';
+import { component } from 'react';
 
 describe('App', () => {
-    let wrapper;
+    let component;
 
     beforeEach(() => {
-        wrapper = shallow(<App />)
+        component = shallow(<App.WrappedComponent />)
     });
 
     test('it renders', () => {
-        expect(wrapper.find('#app')).toHaveLength(1);
+        expect(component.find('#app')).toHaveLength(1);
     });
 
 });

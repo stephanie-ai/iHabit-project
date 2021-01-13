@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&family=Julius+Sans+One&family=Quicksand&display=swap");
+
+/* font-family: 'Comfortaa', cursive;
+font-family: 'Julius Sans One', sans-serif;
+font-family: 'Quicksand', sans-serif; */
+
+h1,
+button {
+  font-family: "Comfortaa", cursive;
+}
+
+h2,
+h3 {
+  font-family: "Julius Sans One", sans-serif;
+}
+
+p,
+label {
+  font-family: "Quicksand", sans-serif;
+}
+
+button {
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.17em solid black;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: rgba(127, 255, 212, 0);
+  cursor: pointer;
+}
+
+input {
+  padding: 0.35em 1.2em;
+  border: 0.17em solid black;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  background-color: rgba(127, 255, 212, 0);
+}
+
+button:hover {
+  border: 0.17em solid white;
+  background-color: black;
+  color: white;
+}
+
+input:focus {
+  background-color: white;
+}
+
+#content,
+#content1 {
+  display: block;
+}

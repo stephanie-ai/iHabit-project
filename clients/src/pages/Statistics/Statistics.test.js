@@ -1,4 +1,5 @@
 import Statistics from '.';
+import { component } from 'react';
 
 describe('Statistics', () => {
     let component;

@@ -3,14 +3,14 @@ import { shallow } from 'enzyme';
 import { component } from 'react';
 
 describe('AddHabit', () => {
-    let component, form;
+    let component, form, habit;
 
     beforeEach(() => {
         component = shallow(<AddHabit />);
         })
 
         test('it exists', () => {
-            expect(component.find('AddHabit').exists()).toBeTruthy();
+            expect(component.find('AddHabit').toexist())
         })
 
         test('it renders', () => {

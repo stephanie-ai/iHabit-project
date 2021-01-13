@@ -13,6 +13,10 @@ describe('LoggedOutRoute', () => {
         expect(component.find('LoggedOutRoute')).toHaveLength(1)
     })
     
+    test('it exists', () => {
+        expect(component.find('LoggedOutRoute').exists()).toBeTruthy();
+    })
+
     test('it redirects to /habits link', () => {
     let Redirect = component.find('Redirect');
     expect(redirect).toHaveLength(1)

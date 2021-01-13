@@ -15,6 +15,11 @@ describe('Login', () => {
         expect(component.find('div')).toHaveLength(1)
     })
 
+    test('it exists', () => {
+        expect(component.find('Login').exists()).toBeTruthy();
+    })
+
+
     test('it has a state', () => {
         const instance = component.instance()
         expect(instance['state']).toEqual({"username": "", "password": ""})
