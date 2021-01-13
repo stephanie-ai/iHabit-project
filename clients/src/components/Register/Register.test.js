@@ -3,9 +3,7 @@ import { shallow } from 'enzyme';
 import { component } from 'react';
 
 describe('Register', () => {
-    let component, form, instance;
-    let fakeEvent = { preventDefault: () => 'fake', target: {name: 'username', value: 1}}
-    let preventDefault = { preventDefault: () => 'fake' }
+    let component, form;
 
     beforeEach(() => {
         component = shallow(<Register />)
@@ -30,7 +28,7 @@ describe('Register', () => {
     });
     
     test('it renders a form with three text inputs and a submit', () => {
-        form = wrapper.find('form');
+        form = component.find('form');
         expect(form).toHaveLength(1);
         const inputs = form.find('input')
         expect(inputs).toHaveLength(4);
@@ -39,7 +37,7 @@ describe('Register', () => {
    
     test('it calls on register prop on form submission', () => {
         form = component.find('form');
-        component.setState({username: "bob",password: "enter",passwordConfirmation "enter"});
+        component.setState({username: "bob",password: "enter", passwordConfirmation: "enter"});
         form.stimulate('submit', {preventDefault: jest.FocusNavigationEvent() });
         expect(registerMock).toHaveBeenNthCalledWith(1, 'bob', 'enter', 'enter');
     })
