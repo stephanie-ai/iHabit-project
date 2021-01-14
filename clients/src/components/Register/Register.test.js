@@ -6,7 +6,8 @@ describe('Register', () => {
     let component, form;
 
     beforeEach(() => {
-        component = shallow(<Register />)
+        registerMock = jest.fn()
+        component = shallow(<Register register={registerMock} />)
     })
 
     test('it renders', () => {

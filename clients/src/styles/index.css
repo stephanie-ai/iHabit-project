@@ -57,3 +57,8 @@ input:focus {
 #content1 {
   display: block;
 }
+
+th,
+td {
+  padding: 15px;
+}

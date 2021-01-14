@@ -41,7 +41,7 @@ class App extends Component {
                   <Route exact path='/' component={()=> <Home login={this.login}/>} />
                   {/* <Route exact path='/habits' component={Habits} /> */}
                   {/* <Route path='/addhabit' component={AddHabit} /> */}
-                  <LoggedOutRoute path='/login' isLoggedIn={this.state.isLoggedIn} component={Login} />
+                  <LoggedOutRoute path='/login' isLoggedIn={this.state.isLoggedIn} component={()=> <Login login={this.login}/>} />
                   <LoggedOutRoute path='/register' isLoggedIn={this.state.isLoggedIn} component={Register} /> 
                   <PrivateRoute path='/habits' isLoggedIn={this.state.isLoggedIn} component={()=> <Habits user={this.state.currentUser}/>} />
                   <PrivateRoute path='/statistics' isLoggedIn={this.state.isLoggedIn} component={() => <Statistics user={this.state.currentUser} />} />
