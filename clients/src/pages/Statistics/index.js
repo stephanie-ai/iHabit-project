@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import '../../styles/index.css'
 import { Bar } from '@reactchartjs/react-chart.js'
-=======
-//import '../../styles/index.css'
-import { Line } from '@reactchartjs/react-chart.js'
->>>>>>> 5acfb18a1c2eafd83b9e78c3f146cbdc0c511146
 
 class Statistics extends Component {
 
