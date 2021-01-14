@@ -13,33 +13,32 @@ class AddHabit extends React.Component{
     getnum = async () =>  {
         const getFetch = await fetch(`http://localhost:3000/daytrack/${this.props.habits.user}`);
         const res = await getFetch.json();
-        //console.log(res[this.props.index]);
+        const numoftimes = await res[this.props.index];
         if(res.err){ throw Error(res.err)}
-        this.setState({count: res[this.props.index]});
+        this.setState({count: numoftimes.completion});
     }
 
     completeCount = async(e)=>{
         e.preventDefault();
+
         const options = {
             method: 'PATCH'
         }
         const patchData = await fetch(`http://localhost:3000/daytrack/${this.props.habits.user}/${this.props.habits.id}`, options);
-        //console.log(patchData)
+        
         const res = await patchData.status;
         if (res !== 204){ throw Error(res.err) }
-        this.getnum();
+        this.setState(prevState => ({ count: --prevState.count}));
     }
 
-    deleteHabit = (e) => {
+    deleteHabit = async (e) => {
         const options = {
             method: 'DELETE'
         }
-        // use the user id and the habit to find then delete
-        fetch(`http://localhost:3000/habit/${this.props.habits.id}/`, options)
-            .then(fetchHabits)
-            .catch(err => console.warn(err));
-        
-        //do the if statement to check for errors and then re-render
+        const del = await fetch(`http://localhost:3000/habit/${this.props.habits.id}/`, options)
+        const res = await del.status;
+        if (res !== 204) { throw Error(res.err) };
+        this.props.fetchHabits();
     }
 
 
@@ -48,9 +47,9 @@ class AddHabit extends React.Component{
             <div className='habit'>
             <h3>{this.props.habits.habit}</h3>
             <p id ='p1'>Complete per Week: {this.props.habits.weeklyNum}</p>
-            <p id= 'p2'>Left for Today: {this.state.count.completion}</p>
-            <button onClick={this.completeCount}>Count</button>
-            <button onClick={e => deleteHabit(e, h.id)}>X</button>
+            <p id= 'p2'>Left for Today: {this.state.count}</p>
+            <button disabled={this.state.count.completion === 0} onClick={this.completeCount}>Count</button>
+            <button onClick={e => this.deleteHabit(e)}>X</button>
         </div>
         );
     }

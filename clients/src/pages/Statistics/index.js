@@ -42,7 +42,7 @@ class Statistics extends Component {
         const getData = await fetch(`http://localhost:3000/weektrack/${this.props.user.userId}/${formatedDate}`);
         const res = await getData.json();
         if (res.err){ throw Error(res.err) }
-        console.log(res);
+        
         this.setState({ weeklyDate: res});
     };
 
@@ -66,7 +66,7 @@ class Statistics extends Component {
         }
     }
 
-    render() {
+    render() { 
         
         // const renderDailyData = this.state.dailyDate.map(d => (
         //     <div key={d.id}>
@@ -101,10 +101,10 @@ class Statistics extends Component {
             <tr key={d.id}>
                 <td>{d.habitname}</td>
                 <td>{d.completion}</td>
-                <td>{d.day}</td>
+                <td>{d.day.toString().slice(0,10)}</td>
                 <td>{d.currentdate}</td>
-                <td>{d.streak}</td>
-                <td>{d.streakDay}</td>
+                <td>{d.streak_day === 0 ? "False" : "True"}</td>
+                <td>{d.streak_day}</td>
             </tr>
         ))
 
@@ -112,7 +112,7 @@ class Statistics extends Component {
             <tr key={w.id}>
                 <td>{w.habitname}</td>
                 <td>{w.comp_average}</td>
-                <td>{w.start_date}</td>
+                <td>{w.start_date.toString().slice(0,10)}</td>
             </tr>
         ));
 
