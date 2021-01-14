@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/index.css'
+// import '../../styles/index.css'
 import { Line } from '@reactchartjs/react-chart.js'
 
 class Statistics extends Component {
