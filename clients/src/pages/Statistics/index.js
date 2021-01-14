@@ -41,7 +41,7 @@ class Statistics extends Component {
         console.log("date",formatedDate)
         const res = await getData.json();
         if (res.err){ throw Error(res.err) }
-        console.log("weekly",res);
+        
         this.setState({ weeklyDate: res});
         let result = res.map(a => a.completion_average);
         console.log("comp-average", result)
@@ -79,25 +79,24 @@ class Statistics extends Component {
         return data;
     }
 
-    render() {
+    render() { 
         
         const renderDailyData = this.state.dailyDate.map(d => (
             <tr key={d.id}>
                 <td>{d.habitname}</td>
                 <td>{d.completion}</td>
-                <td>{d.day.slice(0,10)}</td>
+                <td>{d.day.toString().slice(0,10)}</td>
                 <td>{d.currentdate}</td>
-                <td>{d.streak}</td>
-                <td>{d.streakDay === 0 ? "false" : "True"}</td>
-		<td>{d.streakDay}</td>
+                <td>{d.streak_day === 0 ? "False" : "True"}</td>
+                <td>{d.streak_day}</td>
             </tr>
         ))
 
         const renderWeeklyData = this.state.weeklyDate.map(w => (
             <tr key={w.id}>
                 <td>{w.habitname}</td>
-                <td>{w.comp_average}</td>
-                <td>{w.start_date.slice(0,10)}</td>
+                <td>{w.completion_average}</td>
+                <td>{w.start_date.toString().slice(0,10)}</td>
             </tr>
         ));
 

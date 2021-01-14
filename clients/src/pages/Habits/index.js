@@ -27,7 +27,6 @@ class Habits extends Component {
 
     createHabit = async (e) =>{
         e.preventDefault();
-        console.log(e.target.habitName.value);
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -45,7 +44,7 @@ class Habits extends Component {
     }
     
     render(){
-        const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} index={idx}/>)
+        const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} index={idx} fetchHabits={this.fetchHabits}/>)
         const newhabit = (<div id = 'newhabit'>
                 <form onSubmit={this.createHabit}>
                     <label htmlFor="habitName">Habit name:</label>
