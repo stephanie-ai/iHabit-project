@@ -68,7 +68,7 @@ describe('Statistics', () => {
 
     test('it should have two tables', () =>{
         const container = component.find('#tableContainerDiv').children();
-        expect(container).toHaveLength(2);
+        expect(container).toHaveLength(3);
     })
 
     test('it renders the daily title', () => {

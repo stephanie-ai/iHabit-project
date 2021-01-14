@@ -37,10 +37,8 @@ class App extends Component {
           <main>
               <NavBar isLoggedIn={this.state.isLoggedIn} logout={this.logout} />
               
-              <Switch>
+              <Switch id={"navPaths"}>
                   <Route exact path='/' component={()=> <Home login={this.login}/>} />
-                  {/* <Route exact path='/habits' component={Habits} /> */}
-                  {/* <Route path='/addhabit' component={AddHabit} /> */}
                   <LoggedOutRoute path='/login' isLoggedIn={this.state.isLoggedIn} component={()=> <Login login={this.login}/>} />
                   <LoggedOutRoute path='/register' isLoggedIn={this.state.isLoggedIn} component={Register} /> 
                   <PrivateRoute path='/habits' isLoggedIn={this.state.isLoggedIn} component={()=> <Habits user={this.state.currentUser}/>} />
