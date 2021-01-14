@@ -49,7 +49,7 @@ class AddHabit extends React.Component{
             <p id ='p1'>Complete per Week: {this.props.habits.weeklyNum}</p>
             <p id= 'p2'>Left for Today: {this.state.count}</p>
             <button disabled={this.state.count.completion === 0} onClick={this.completeCount}>Count</button>
-            <button onClick={e => this.deleteHabit(e)}>X</button>
+            <button className="delete-btn" onClick={e => this.deleteHabit(e)}>X</button>
         </div>
         );
     }

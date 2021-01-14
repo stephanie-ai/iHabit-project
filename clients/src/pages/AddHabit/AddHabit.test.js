@@ -9,7 +9,8 @@ describe('AddHabit', () => {
     let stubHandleClick;
 
     beforeEach(() => {
-        wrapper = shallow(<AddHabit habits= {{ id: 2, habit: "eating", weekly_track: 3, daily_track: 5, user_id: 5}}/>);
+        wrapper = shallow(<AddHabit habits= {{ id: 2, habit: "eating", weekly_track: 3, daily_track: 5, user_id: 5}} deletehabit = {stubHandleClick} />);
+        stubHandleClick = jest.fn();
     });
 
     test('it has a state', () => {
@@ -58,9 +59,16 @@ describe('AddHabit', () => {
         const button = wrapper.find('button');
         expect(button).toHaveLength(2);
     })
-    // line 53, 34-40
-    test('it deletes habits onclick of delete button', () => {
 
+    test('it fetches data from server in order to delete a habit', () => {
+  
+    })
+    // line 53, 34-40
+    test('it calls a deletehabit prop when clicked', () => {
+        let btn = wrapper.find('.delete-btn')
+        btn.stimulate('click');
+        expect(wrapper.find('delete-btn'))
+        expect(stubHandleClick.mock.calls.length).toBe(1);
     })
 
     //lines 22-30, 15-18
