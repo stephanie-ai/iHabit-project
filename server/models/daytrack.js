@@ -92,6 +92,7 @@ class Daytrack {
                                                 user_id = ${userid} 
                                             AND habit_id = ${habitid};`);
                 const foundHabit = new Daytrack(habit.rows[0]);
+                console.log(foundHabit);
                 resolve(foundHabit);
             }catch(err){
                 reject(`Habitid ${habitid} with userid ${userid} could not be found`);
@@ -129,7 +130,7 @@ class Daytrack {
     static prevDay(user, habit){
         return new Promise (async (resolve, reject) => {
             try{
-                const prevDate = moment().format('YYYY-MM-DD');
+                const prevDate = moment().format('DD-MM-YYYY'); //the date compare for the weektrack works use that e.g. 2021-11-01
                 const jointable = await db.run(SQL`SELECT habits.habit, daytrack.user_id, daytrack.currentdate FROM daytrack
                                                     INNER JOIN habits
                                                         ON habits.user_id = daytrack.user_id
@@ -158,7 +159,7 @@ class Daytrack {
                     data.streak_day = 0;
                 }
 
-                //console.log(result.rows[0].currentdate, prevDate);
+                console.log(result.rows[0].currentdate < prevDate);
                 resolve(data);
             }catch(err){
                 reject('yestardays data could not be found')

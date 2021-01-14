@@ -40,7 +40,7 @@ class Home extends Component {
                         <button id="loginbtn"
                             className={"controller " + (this.state.isLoginOpen
                             ? "selected-controller"
-                            : "")}
+                            : "")} 
                             onClick={this.showLoginBox.bind(this)}>
                             Login
                         </button>
@@ -48,7 +48,7 @@ class Home extends Component {
                         <button id="registerbtn"
                             className={"controller " + (this.state.isRegisterOpen
                             ? "selected-controller"
-                            : "")}
+                            : "")} 
                             onClick={this.showRegisterBox.bind(this)}>
                             Register
                         </button>

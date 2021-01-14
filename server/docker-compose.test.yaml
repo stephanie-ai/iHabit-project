@@ -1,7 +1,7 @@
 services:
   api:
     image: node:12.18.4
-    environment: 
+    environment:
       - PGUSER=user
       - PGHOST=db
       - PGPASSWORD=enter
@@ -13,11 +13,11 @@ services:
     command: bash -c "npm install && npm test"
 
   db:
-    expose: 
+    expose:
       - "5432"
     volumes:
       - "test_dbdata:/var/lib/postgresql/data"
-    environment: 
+    environment:
       - POSTGRES_DB=ihabit
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=enter

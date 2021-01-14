@@ -10,6 +10,7 @@
     font-weight: bold;
     width: 100px;
     height: 100px;
+    
 }
 
 #plushabit:hover {
@@ -18,4 +19,25 @@
     -webkit-transform: translateY(-5px);
     -ms-transform: translateY(-5px);
     transform: translateY(-5px);
+}
+
+#newhabit {
+    background-color:  #ECECEC;
+    color: #00BCD4;
+    height: 40px;
+    padding: 20px;
+    border-radius: 0.3rem;
+    align-items: center;
+}
+
+#renderh {
+  
+    text-align: center;
+}
+
+
+#top {
+    text-align: center;
+    padding: 40px;
+    
 }
