@@ -8,18 +8,13 @@ class Statistics extends Component {
         dailyDate: [],
         weeklyDate: [],
         data: {
-            labels: ["1","2","3"],
+            labels: ["1","2","3"], // set as habit name
             datasets: [
                 {
-                    label: "Videos made",
+                    label: "Completion average",
                     backgroundColor: "rgba(255,0,255, 0.75)",
-                    data: [2,5,7]
+                    data: [] // set as comp average
                 },
-                {
-                    label: "Subscriptions",
-                    backgroundColor: "rgba(0, 0, 255, 0.75)",
-                    data: [20,15,3]
-                }
             ]
         }
     }
@@ -33,17 +28,32 @@ class Statistics extends Component {
         const getData = await fetch(`http://localhost:3000/daytrack/${this.props.user.userId}`);
         const res = await getData.json();
         if (res.err) { throw Error(res.err) }
-        //console.log(res);
+        console.log("daily",res);
         this.setState({ dailyDate: res });
     };
 
     weekData = async () => {
         const formatedDate = "11-01-2021"
         const getData = await fetch(`http://localhost:3000/weektrack/${this.props.user.userId}/${formatedDate}`);
+        console.log("date",formatedDate)
         const res = await getData.json();
         if (res.err){ throw Error(res.err) }
-        console.log(res);
+        console.log("weekly",res);
         this.setState({ weeklyDate: res});
+        let result = res.map(a => a.completion_average);
+        console.log("comp-average", result)
+        //
+        // this.setState({data.datasets.data: result})
+        //
+        this.setState(prevState => ({
+            data: {
+                ...prevState.data,
+                datasets: {
+                    ...prevState.data.datasets,
+                    data: result
+                }
+            }
+        }))
     };
 
         setGradientColor = (canvas, color) => {
@@ -118,7 +128,7 @@ class Statistics extends Component {
 
         return (
             <div>
-                <div>
+                <div style={{ position: "relative", width: 600, height: 550 }}>
                     <table>
                         <caption id ="daily">Daily</caption>
                         <thead>
