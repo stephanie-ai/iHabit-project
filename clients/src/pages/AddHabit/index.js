@@ -30,12 +30,12 @@ class AddHabit extends React.Component{
         this.getnum();
     }
 
-    deleteHabit = (e, id) => {
+    deleteHabit = (e) => {
         const options = {
             method: 'DELETE'
         }
         // use the user id and the habit to find then delete
-        fetch(`http://localhost:3000/habit/${id}`, options)
+        fetch(`http://localhost:3000/habit/${this.props.habits.id}/`, options)
             .then(fetchHabits)
             .catch(err => console.warn(err));
         
