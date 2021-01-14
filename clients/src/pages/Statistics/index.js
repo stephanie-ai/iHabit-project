@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import '../../styles/index.css'
+import '../../styles/index.css'
 import { Line } from '@reactchartjs/react-chart.js'
 
 class Statistics extends Component {
@@ -8,7 +8,7 @@ class Statistics extends Component {
         dailyDate: [],
         weeklyDate: [],
         data: {
-            labels: ["1","2","3"], // set as habit name
+            labels: [], // set as habit name
             datasets: [
                 {
                     label: "Completion average",
@@ -22,6 +22,9 @@ class Statistics extends Component {
     componentDidMount(){
         this.dayData();
         this.weekData();
+        this.getChartData;
+        this.setGradientColor;
+        
     }
 
     dayData = async () => {
@@ -38,27 +41,26 @@ class Statistics extends Component {
         console.log("date",formatedDate)
         const res = await getData.json();
         if (res.err){ throw Error(res.err) }
-        console.log("weekly",res);
+        
         this.setState({ weeklyDate: res});
         let result = res.map(a => a.completion_average);
         console.log("comp-average", result)
         //
-        // this.setState({data.datasets.data: result})
+        let habits = res.map(a => a.habitname);
+        console.log("comp-average", habits)
         //
-        this.setState(prevState => ({
-            data: {
-                ...prevState.data,
-                datasets: {
-                    ...prevState.data.datasets,
-                    data: result
-                }
-            }
-        }))
+        console.log("test",this.state.data.datasets)
+
+        let newState = Object.assign({}, this.state);
+        newState.data.datasets[0].data = result
+        newState.data.labels = habits
+        console.log("newstate", newState)
+        this.setState(newState)
     };
 
-        setGradientColor = (canvas, color) => {
-        const ctx =  canvas.getContext('2d');
-        const gradient = ctx.createLinerGradient(0, 0, 600, 550)
+    setGradientColor = (canvas, color) => {
+        const ctx = canvas.getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 600, 550)
         gradient.addColorStop(0, color);
         gradient.addColorStop(0.95, "rgba(133, 122, 144, 0.5)");
         return gradient;
@@ -74,55 +76,27 @@ class Statistics extends Component {
                 set.borderWidth = 2;
             })
         }
+        return data;
     }
 
-    render() {
+    render() { 
         
-        // const renderDailyData = this.state.dailyDate.map(d => (
-        //     <div key={d.id}>
-        //         <p>Habit: {d.habitname}</p>
-        //         <p>Number To Complete{d.completion}</p>
-        //         <p>Today{d.day}</p>
-        //         <p>Date{d.currentdate}</p>
-        //         <p>Streak{d.streak}</p>
-        //         <p>Continuous streak{d.streakDay}</p>
-        //     </div>
-        // ))
-
-        // const renderWeeklyData = this.state.weeklyDate.map(w => (
-        //     <div key={w.id}>
-        //         <p>Habit: {w.habit}</p>
-        //         <p>Weekly Completion Average: {w.comp_average}</p>
-        //         <p>Start Date: {w.start_date}</p>
-        //     </div>
-        // ));
-
-        // return (
-        //     <div>
-        //         <h2> Hello from Statistics page </h2>
-        //         <h3>Daily habits stats</h3>
-        //         { renderDailyData }
-        //         <h3>Weekly habits stats</h3>
-        //         { renderWeeklyData }
-        //     </div>
-        // )
-
         const renderDailyData = this.state.dailyDate.map(d => (
             <tr key={d.id}>
                 <td>{d.habitname}</td>
                 <td>{d.completion}</td>
-                <td>{d.day}</td>
+                <td>{d.day.toString().slice(0,10)}</td>
                 <td>{d.currentdate}</td>
-                <td>{d.streak}</td>
-                <td>{d.streakDay}</td>
+                <td>{d.streak_day === 0 ? "False" : "True"}</td>
+                <td>{d.streak_day}</td>
             </tr>
         ))
 
         const renderWeeklyData = this.state.weeklyDate.map(w => (
             <tr key={w.id}>
                 <td>{w.habitname}</td>
-                <td>{w.comp_average}</td>
-                <td>{w.start_date}</td>
+                <td>{w.completion_average}</td>
+                <td>{w.start_date.toString().slice(0,10)}</td>
             </tr>
         ));
 
@@ -149,7 +123,7 @@ class Statistics extends Component {
             options={{
                 responsive: true
             }}
-            data={this.state.data}
+            data={this.getChartData}
             />
                 </div>
                 <div>

@@ -2,47 +2,68 @@ import AddHabit from '.';
 import { shallow } from 'enzyme';
 
 describe('AddHabit', () => {
-    let wrapper, form, habit;
+    let wrapper, form;
+    let stateStub = {
+        count: 0
+    }
 
     beforeEach(() => {
-        wrapper = shallow(<AddHabit />);
-        })
+        wrapper = shallow(<AddHabit habits= {{ id: 2, habit: "eating", weekly_track: 3, daily_track: 5, user_id: 5}}/>);
+    });
 
-        test('it exists', () => {
-            const AddHabit = wrapper.find('AddHabit')
-            expect(wrapper.find('AddHabit').exists()).toBeTruthy()
-        })
-        test('it renders', () => {
-            expect(wrapper.find('div')).toHaveLength(1)
-        })
+    test('it has a state', () => {
 
-        test('it renders 2 paragraphs', () => {
-            const pTag = wrapper.find('p');
-            expect(pTag).toHaveLength(2)
-        })
-
-        test('it renders a paragraph with text', () => {
-            expect(wrapper.find('#p1').text()).toContain('Complete per Week:')
-        })
-
-        test('it renders a paragraph with text', () => {
-            expect(wrapper.find('#p2').text()).toContain('Complete per Day:')
-        })
-    
-        test('it renders the title', () => {
-            expect(wrapper.find('h3').text()).toContain('Hello from AddHabit');
-        })
-        
-        test('it renders a form', () => {
-            form = wrapper.find('form');
-            expect(form).toHaveLength(1);
-        })
-
-        test('it renders a form with three text inputs and a submit', () => {
-                form = wrapper.find('form');
-                expect(form).toHaveLength(1);
-                const inputs = form.find('input')
-                expect(inputs).toHaveLength(4);
-                expect(inputs.first().props().type).toBe('text');
-            });
     })
+
+    test('lifecycle method should have been called', () => {
+        const componentDidMount = jest.fn()
+
+        class Hi extends AddHabit {
+            state = stateStub;
+            componentDidMount = componentDidMount;
+
+            render() {
+                return (<AddHabit />)
+            }
+        }
+        const wrapper = shallow(<Hi />)
+        expect(componentDidMount.mock.calls.length).toBe(1)
+    })
+
+    test('it renders a div with the id habit', () => {
+        expect(wrapper.find('#habit')).toHaveLength(1);
+    })
+    test('it exists', () => {
+        expect(wrapper).toExist
+    })
+    test('it renders 2 paragraphs', () => {
+        const pTag = wrapper.find('p');
+        expect(pTag).toHaveLength(2)
+    })
+
+    test('it renders a paragraph with text', () => {
+        expect(wrapper.find('#p1').text()).toContain('Complete per Week:')
+    })
+
+    test('it renders a paragraph with text', () => {
+        expect(wrapper.find('#p2').text()).toContain('Left for Today:')
+    })
+
+    test('it renders the title', () => {
+        expect(wrapper.find('h3').text()).toContain('eating');
+    })
+
+    test('it has 2 buttons', () => {
+        const button = wrapper.find('button');
+        expect(button).toHaveLength(2);
+    })
+    // line 53, 34-40
+    test('it deletes habits onclick of delete button', () => {
+
+    })
+    
+    //lines 22-30, 15-18
+    test('it counts', () => {
+
+    })
+})
