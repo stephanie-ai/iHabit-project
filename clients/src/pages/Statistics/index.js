@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../styles/index.css'
+import './style.css'
 import { Bar } from '@reactchartjs/react-chart.js'
 
 class Statistics extends Component {
@@ -99,7 +100,7 @@ class Statistics extends Component {
 
         return (
             <div id="tableContainerDiv">
-                <div style={{ position: "relative", width: 600, height: 550 }}>
+                <div style={{ position: "relative" }}>
                     <table>
                         <caption id ="daily">Daily habits stats</caption>
                         <thead>

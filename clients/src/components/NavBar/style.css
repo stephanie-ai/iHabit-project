@@ -6,15 +6,16 @@
     margin-right: 50px;  
     text-align: center;
     padding: 8px;
+    
   }
   
-  nav.navbar {
-      margin: 100px;
+  nav {
+    margin-top: 20px;
+    margin-left:auto; 
+    margin-right:auto;
   }
+
   .navBar {
-    display: flex;
-    align-content: space-between;
-    justify-content: space-between;
     text-decoration: none;
   }
 
