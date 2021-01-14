@@ -1,0 +1,28 @@
+services:
+  api:
+    image: node:12.18.4
+    ports: 
+      - 3000:3000
+    environment: 
+      - PGUSER=user
+      - PGHOST=db
+      - PGPASSWORD=enter
+      - PGDATABASE=ihabit
+      - PGPORT=5432
+      - NODE_ENV=development
+    depends_on:
+      - db
+    command: bash -c "npm install && npm start"
+
+  db:
+    ports:
+      - 35432:5432
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+      - "./db/migrations:/docker-entrypoint-initdb.d/:ro"
+    environment: 
+      - POSTGRES_DB=ihabit
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=enter
+volumes:
+  dbdata:
