@@ -8,18 +8,13 @@ class Statistics extends Component {
         dailyDate: [],
         weeklyDate: [],
         data: {
-            labels: ["1","2","3"],
+            labels: [], // set as habit name
             datasets: [
                 {
-                    label: "Videos made",
+                    label: "Completion average",
                     backgroundColor: "rgba(255,0,255, 0.75)",
-                    data: [2,5,7]
+                    data: [] // set as comp average
                 },
-                {
-                    label: "Subscriptions",
-                    backgroundColor: "rgba(0, 0, 255, 0.75)",
-                    data: [20,15,3]
-                }
             ]
         }
     }
@@ -27,28 +22,45 @@ class Statistics extends Component {
     componentDidMount(){
         this.dayData();
         this.weekData();
+        this.getChartData;
+        this.setGradientColor;
+        
     }
 
     dayData = async () => {
         const getData = await fetch(`http://localhost:3000/daytrack/${this.props.user.userId}`);
         const res = await getData.json();
         if (res.err) { throw Error(res.err) }
-        //console.log(res);
+        console.log("daily",res);
         this.setState({ dailyDate: res });
     };
 
     weekData = async () => {
         const formatedDate = "11-01-2021"
         const getData = await fetch(`http://localhost:3000/weektrack/${this.props.user.userId}/${formatedDate}`);
+        console.log("date",formatedDate)
         const res = await getData.json();
         if (res.err){ throw Error(res.err) }
         
         this.setState({ weeklyDate: res});
+        let result = res.map(a => a.completion_average);
+        console.log("comp-average", result)
+        //
+        let habits = res.map(a => a.habitname);
+        console.log("comp-average", habits)
+        //
+        console.log("test",this.state.data.datasets)
+
+        let newState = Object.assign({}, this.state);
+        newState.data.datasets[0].data = result
+        newState.data.labels = habits
+        console.log("newstate", newState)
+        this.setState(newState)
     };
 
-        setGradientColor = (canvas, color) => {
-        const ctx =  canvas.getContext('2d');
-        const gradient = ctx.createLinerGradient(0, 0, 600, 550)
+    setGradientColor = (canvas, color) => {
+        const ctx = canvas.getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 600, 550)
         gradient.addColorStop(0, color);
         gradient.addColorStop(0.95, "rgba(133, 122, 144, 0.5)");
         return gradient;
@@ -64,39 +76,11 @@ class Statistics extends Component {
                 set.borderWidth = 2;
             })
         }
+        return data;
     }
 
     render() { 
         
-        // const renderDailyData = this.state.dailyDate.map(d => (
-        //     <div key={d.id}>
-        //         <p>Habit: {d.habitname}</p>
-        //         <p>Number To Complete{d.completion}</p>
-        //         <p>Today{d.day}</p>
-        //         <p>Date{d.currentdate}</p>
-        //         <p>Streak{d.streak}</p>
-        //         <p>Continuous streak{d.streakDay}</p>
-        //     </div>
-        // ))
-
-        // const renderWeeklyData = this.state.weeklyDate.map(w => (
-        //     <div key={w.id}>
-        //         <p>Habit: {w.habit}</p>
-        //         <p>Weekly Completion Average: {w.comp_average}</p>
-        //         <p>Start Date: {w.start_date}</p>
-        //     </div>
-        // ));
-
-        // return (
-        //     <div>
-        //         <h2> Hello from Statistics page </h2>
-        //         <h3>Daily habits stats</h3>
-        //         { renderDailyData }
-        //         <h3>Weekly habits stats</h3>
-        //         { renderWeeklyData }
-        //     </div>
-        // )
-
         const renderDailyData = this.state.dailyDate.map(d => (
             <tr key={d.id}>
                 <td>{d.habitname}</td>
@@ -111,14 +95,14 @@ class Statistics extends Component {
         const renderWeeklyData = this.state.weeklyDate.map(w => (
             <tr key={w.id}>
                 <td>{w.habitname}</td>
-                <td>{w.comp_average}</td>
+                <td>{w.completion_average}</td>
                 <td>{w.start_date.toString().slice(0,10)}</td>
             </tr>
         ));
 
         return (
             <div>
-                <div>
+                <div style={{ position: "relative", width: 600, height: 550 }}>
                     <table>
                         <caption id ="daily">Daily</caption>
                         <thead>
@@ -139,7 +123,7 @@ class Statistics extends Component {
             options={{
                 responsive: true
             }}
-            data={this.state.data}
+            data={this.getChartData}
             />
                 </div>
                 <div>

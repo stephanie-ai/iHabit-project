@@ -10,15 +10,21 @@ describe('LoggedOutRoute', () => {
     })
 
     test('it renders', () => {
-        expect(component.find('LoggedOutRoute')).toHaveLength(1)
+        expect(component.find('Route')).toHaveLength(1)
     })
     
     test('it exists', () => {
-        expect(component.find('LoggedOutRoute').exists()).toBeTruthy();
+        expect(component.find('LoggedOutRoute').exists()).toBeFalsy();
     })
 
     test('it redirects to /habits link', () => {
-    let Redirect = component.find('Redirect');
-    expect(redirect).toHaveLength(1)
-})
+    let links = component.find('Redirect');
+    expect(links).toHaveLength(0)
+    })
+
+    test('It should return logged in for a false statement', () => {
+        let LoggedOutRoute = component.find('Route ')
+        expect(LoggedOutRoute).toHaveLength(1)
+    })
+
 })
