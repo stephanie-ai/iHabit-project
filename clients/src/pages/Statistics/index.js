@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../styles/index.css'
-import { Line } from '@reactchartjs/react-chart.js'
+import { Bar } from '@reactchartjs/react-chart.js'
 
 class Statistics extends Component {
 
@@ -8,7 +8,7 @@ class Statistics extends Component {
         dailyDate: [],
         weeklyDate: [],
         data: {
-            labels: ["1","2"], // set as habit name
+            labels: [], // set as habit name
             datasets: [
                 {
                     label: "Completion average",
@@ -120,7 +120,7 @@ class Statistics extends Component {
                             {renderDailyData}
                         </tbody>
                     </table>
-                    <Line 
+                    <Bar 
             options={{
                 responsive: true
             }}
