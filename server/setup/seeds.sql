@@ -21,7 +21,7 @@ INSERT INTO weektrack (habit_id, user_id, completion_average, start_date)
 VALUES
     (1, 1, 0, '11/01/2021'),
     (2, 2, 1, '11/01/2021'),
-    (3, 2, 1, '11/01/2021');
+    (3, 2, 0, '11/01/2021');
 
 /*DROP TABLE IF EXISTS users;
 
