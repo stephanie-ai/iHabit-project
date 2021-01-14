@@ -35,6 +35,11 @@ describe('Login', () => {
         component.setState({username: "bob",password: "enter"});
         form.simulate("submit", fakeEvent);
         expect(loginMock).toHaveBeenNthCalledWith(1, 'bob', 'enter');
-        
  })
+    test('it renders a form with a submit input', () => {
+        form = component.find('form');
+        expect(form).toHaveLength(1);
+        const inputs = form.find('input')
+        expect(inputs).toHaveLength(3);
+})
 })

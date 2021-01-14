@@ -28,7 +28,7 @@ describe('habit endpoints', () => {
             .send({
                 habitname: 'shopping',
                 dailyNum: 3
-            }),
+            });
         expect(res.statusCode).toEqual(201);
         expect(res.body).toHaveProperty("id");
 

@@ -6,29 +6,16 @@ Keep track of your habits here on a daily or weekly basis. Keep up your streaks 
 
 To View the Website, Click below!
 
-# Installation
+## Installation
 
-To run the project:
+- First, `git clone` this repository
+- To run the React client, `cd` in to clients folder and `npm install`
+- `npm start` to launch React on `localhost://8080`
 
-- Git clone project to local machine
+- To run the server, `cd` into server folder and `npm install`
+- run `docker-compose up` to launch the express server at `localhost://3000`
 
-### from /clients
-
-- `npm install`
-- `npm start` to start client server
-- Runs on `localhost:8000`
-
-### from /server
-
-To run **dev environment**:
-
-- `docker-compose up --detach` (the `--detach` flag is optional) which does the following:
-  - sets up dev database, runs migrations and seeds
-  - db mapped to `localhost:35432`
-  - runs `npm install & npm start` on server container start
-  - express server mapped to `localhost:3000`
-
-# Technologies
+## Technologies
 
 - HTML
 - CSS
@@ -40,41 +27,18 @@ To run **dev environment**:
 - Docker
 - Netlify
 
-## Process
+## Wins & Challenges
 
-Project started with some research on habit tracking apps and aligning them with the given project brief. Figma was used to generate a wireframe for the architecture of the app.
-Cooding was done as a whole group, in smaller sub teams and individually.
-Working code was pushed regularly to the development branch here on github.
+- Users can register an account and login
+- Users can choose a habit they want to track and choose the frequency
+- Users can mark a habit as complete for the day
+- Users can see their most recent completion s
 
-## General Features
+## Future Features
 
-- Welcome page with login/register element
-- Logged-in users gain access to private routes that allows them to add new habits, view/delete/interact with their habits and view statistics of their completed habits and streaks
+## Learning Curves
 
-### Detailed App Features:
-
-> Users need to register to use the app
-> Password is stored for returning users
-> Users can add new habits and decide on daily or weekly completion points
-> Users can complete their habits by pressing a counter button
-> Users can view their streaks and other statistics, including a graphical representation of their tasks
-
-
-# Future Features
-- integrate social media login options
-
-# Learning Curves
-
-# Wins & Challenges
-| **Wins**                                     | **Challenges**                  |
-| -------------------------------------------- | ------------------------------- |
-| Testing coverage 60%                         | Testing                         |
-| All must haves completed in project          | Docker                   |
-|                                              |  |
-|                                              |     |
-|  |   
-
-# Contributors
+## Contributors
 
 @rajtandel21 @stephanie-ai @Tempestx4 @GeriNZ @FopeA6
 
