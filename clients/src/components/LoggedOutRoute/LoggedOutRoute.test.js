@@ -18,7 +18,7 @@ describe('LoggedOutRoute', () => {
     })
 
     test('it redirects to /habits link', () => {
-    let Redirect = component.find('Redirect');
-    expect(redirect).toHaveLength(1)
+    let links = component.find('Redirect');
+    expect(links).toHaveLength(1)
 })
 })
