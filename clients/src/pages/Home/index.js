@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Login, Register } from '../../components';
-// import './style.css';
+import './style.css';
 // import '../../styles/index.css'
 
 class Home extends Component {
@@ -40,7 +40,7 @@ class Home extends Component {
                         <button id="loginbtn"
                             className={"controller " + (this.state.isLoginOpen
                             ? "selected-controller"
-                            : "")}
+                            : "")} 
                             onClick={this.showLoginBox.bind(this)}>
                             Login
                         </button>
@@ -48,7 +48,7 @@ class Home extends Component {
                         <button id="registerbtn"
                             className={"controller " + (this.state.isRegisterOpen
                             ? "selected-controller"
-                            : "")}
+                            : "")} 
                             onClick={this.showRegisterBox.bind(this)}>
                             Register
                         </button>

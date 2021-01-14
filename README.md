@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/Licence-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 # iHabit
 
 Keep track of your habits here on a daily or weekly basis. Keep up your streaks and reach your goals!
@@ -39,3 +41,7 @@ To View the Website, Click below!
 ## Contributors
 
 @rajtandel21 @stephanie-ai @Tempestx4 @GeriNZ @FopeA6
+
+## Licence
+
+[MIT Licence](https://opensource.org/licenses/mit-license.php)

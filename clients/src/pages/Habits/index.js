@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AddHabit from '../AddHabit';
-// import './style.css';
+import './style.css';
 // import '../../styles/index.css'
 
 class Habits extends Component {
@@ -46,7 +46,7 @@ class Habits extends Component {
     render(){
         const renderHabits = this.state.habits.map((p, idx) => <AddHabit key={idx} habits={p} index={idx} fetchHabits={this.fetchHabits}/>)
         const newhabit = (<div id = 'newhabit'>
-                <form onSubmit={this.createHabit}>
+                <form id="newhabitForm" onSubmit={this.createHabit}>
                     <label htmlFor="habitName">Habit name:</label>
                     <input type="text" name="habitName" />
 
@@ -62,11 +62,15 @@ class Habits extends Component {
         
         return (
             <section id="habits">
-                <h3>Hello from habits page</h3>
+                <div id='top'>
+                <h3>Habits you are working on</h3>
                 <button id="plushabit" onClick={this.habitForm}>+</button>
                 { this.state.enterHabit ? newhabit : null }
-                <p>All your habits:</p>
+                <h1>All your habits:</h1>
+                </div>
+                <div id="renderh">
                 { renderHabits }
+                </div>
             </section>
         );
     }
