@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
+import './style.css'
+import '../../styles/index.css'
 
 const NavBar = ({ isLoggedIn, logout }) => {
     return (
-        <nav>
+        <nav className='navbar'>
             { !isLoggedIn ?
                 <>
                 {/* <NavLink exact to='/'>Home</NavLink>
@@ -12,9 +14,9 @@ const NavBar = ({ isLoggedIn, logout }) => {
                 </>
                 :
                 <>
-                <NavLink to='/habits'>Habits</NavLink>
-                <NavLink to='/addhabit'>Add Habit</NavLink>
-                <NavLink to='/statistics'>Statistics</NavLink>
+                <NavLink to='/habits' className='nav' activeClassName='current'>Habits</NavLink>
+                <NavLink to='/addhabit' className='nav' activeClassName='current'>Add Habit</NavLink>
+                <NavLink to='/statistics' className='nav' activeClassName='current'>Statistics</NavLink>
                 <button id="logoutbtn" onClick={logout}>Logout</button>
                 </>
             }

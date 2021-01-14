@@ -63,11 +63,15 @@ class Habits extends Component {
         
         return (
             <section id="habits">
-                <h3>Hello from habits page</h3>
+                <div id='top'>
+                <h3>Habits you are working on</h3>
                 <button id="plushabit" onClick={this.habitForm}>+</button>
                 { this.state.enterHabit ? newhabit : null }
-                <p>All your habits:</p>
+                <h1>All your habits:</h1>
+                </div>
+                <div id="renderh">
                 { renderHabits }
+                </div>
             </section>
         );
     }
