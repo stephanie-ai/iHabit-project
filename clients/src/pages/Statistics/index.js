@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/index.css'
+//import '../../styles/index.css'
 import { Line } from '@reactchartjs/react-chart.js'
 
 class Statistics extends Component {
@@ -31,14 +31,14 @@ class Statistics extends Component {
         const getData = await fetch(`http://localhost:3000/daytrack/${this.props.user.userId}`);
         const res = await getData.json();
         if (res.err) { throw Error(res.err) }
-        console.log("daily",res);
+        //console.log("daily",res);
         this.setState({ dailyDate: res });
     };
 
     weekData = async () => {
         const formatedDate = "11-01-2021"
         const getData = await fetch(`http://localhost:3000/weektrack/${this.props.user.userId}/${formatedDate}`);
-        console.log("date",formatedDate)
+        //console.log("date",formatedDate)
         const res = await getData.json();
         if (res.err){ throw Error(res.err) }
         
@@ -101,12 +101,12 @@ class Statistics extends Component {
         ));
 
         return (
-            <div>
+            <div id="tableContainerDiv">
                 <div style={{ position: "relative", width: 600, height: 550 }}>
                     <table>
-                        <caption id ="daily">Daily</caption>
+                        <caption id ="daily">Daily habits stats</caption>
                         <thead>
-                            <tr>
+                            <tr id="dailyFields">
                                 <th>Habit</th>
                                 <th>Number To Complete</th>
                                 <th>Today</th>
@@ -128,9 +128,9 @@ class Statistics extends Component {
                 </div>
                 <div>
                     <table>
-                        <caption id="weekly">Weekly</caption>
+                        <caption id="weekly">Weekly habits stats</caption>
                         <thead>
-                            <tr>
+                            <tr id="weeklyFields">
                                 <th>Habit</th>
                                 <th>Weekly Completion Average</th>
                                 <th>Start Date</th>
