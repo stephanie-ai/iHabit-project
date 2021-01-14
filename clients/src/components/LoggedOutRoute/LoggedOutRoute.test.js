@@ -23,8 +23,10 @@ describe('LoggedOutRoute', () => {
     })
 
     test('It should return logged in for a false statement', () => {
-        let LoggedOutRoute = component.find('Route ')
+        let LoggedOutRoute = component.find('Route')
         expect(LoggedOutRoute).toHaveLength(1)
     })
+
+    test('')
 
 })

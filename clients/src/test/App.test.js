@@ -1,9 +1,8 @@
 import App from '../App.js';
 import { shallow } from 'enzyme';
 
-
 describe('App', () => {
-    let wrapper;
+    let wrapper, component;
 
     beforeEach(() => {
         component = shallow(<App.WrappedComponent history={{push: (p)=>{}}}/>)

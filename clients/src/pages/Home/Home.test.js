@@ -1,10 +1,15 @@
 import Home from '.';
 
 describe('Home', () => {
-    let component, initState;
+    let component, initState, newState, initProps;
+    let stateStub = {
+        isLoginOpen: true,
+        isRegisterOpen: false
+    }
 
     beforeEach(() => {
-        component = shallow(<Home />);
+        component = shallow(<Home state = {{ isLoginOpen: true,
+            isRegisterOpen: false}} />);
         })
 
     test('it renders', () => {
@@ -28,25 +33,30 @@ describe('Home', () => {
         let links = component.find('Login');
         expect (links).toHaveLength(1)
     })
-
-    // test('it renders to links to Login and Register Page', () => {
-    //     let links = component.find('Register');
-    //     expect (links).toHaveLength(1)
-    // })
     
-    test('it setState from showLoginBox on onClick', () => {
-        initState = component.setState({
-            isLoginOpen: true,
-            isRegisterOpen: false
-        })
-        let loginbtn = form.find('#loginbtn')
-        initProps = component.setProps({
-            isLoginOpen: true,
-            isRegisterOpen: false
-        })
-    })
+    // test('it setState from showLoginBox on onClick', () => {
+    //     initState = component.setState({
+    //         isLoginOpen: true,
+    //         isRegisterOpen: false
+    //     })
+    //     let loginbtn = component.find('#loginbtn')
+    //     initProps = component.setProps({
+    //         isLoginOpen: true,
+    //         isRegisterOpen: false
+    //     })
+    //     newState = loginbtn.stimulate('click')
+    //     expect(newState).not.toEqual(initState)
+    //     })
+    
 
-    test('it setState from showRegisterBox on onClick', () => {
-        
+    test('it setState from showRegisterBox onClick', () => {
+        let registerbtn = component.find('#registerbtn')
+        initProps = component.setProps({
+            isRegisterOpen: true, 
+            isLoginOpen: false
+        })
+        component.find('#registerbtn').simulate('click')
+        newState = registerbtn.simulate('click')
+        expect(newState).not.toEqual(stateStub)
     })
-})
+});
