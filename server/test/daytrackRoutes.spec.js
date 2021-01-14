@@ -15,5 +15,5 @@ describe('daytrack endpoints', () => {
         await api.close()
     })
 
-    
+
 })

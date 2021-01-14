@@ -44,7 +44,7 @@ class AddHabit extends React.Component{
 
     render() {
         return (
-            <div className='habit'>
+            <div id='habit'>
             <h3>{this.props.habits.habit}</h3>
             <p id ='p1'>Complete per Week: {this.props.habits.weeklyNum}</p>
             <p id= 'p2'>Left for Today: {this.state.count}</p>
