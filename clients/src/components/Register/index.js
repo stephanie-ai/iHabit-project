@@ -56,7 +56,7 @@ class Register extends Component {
                     <label htmlFor="passwordConfirmation">Confirm your password</label>
                     <input type="text" name="passwordConfirmation" onChange={this.handleInput} />
 
-                    <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Create Account" />
+                    <input type="submit" id="btn" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Create Account" />
 
                 </form>
             </div>

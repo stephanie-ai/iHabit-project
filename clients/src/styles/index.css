@@ -22,7 +22,7 @@ td {
   font-family: "Quicksand", sans-serif;
 }
 
-button {
+button, #btn {
   text-transform: uppercase;
   display: inline-block;
   padding: 0.35em 1.2em;
@@ -46,7 +46,7 @@ input {
   background-color: rgba(127, 255, 212, 0);
 }
 
-button:hover {
+button:hover, #btn:hover {
   border: 0.17em solid white;
   background-color: black;
   color: white;
