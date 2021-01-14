@@ -7,7 +7,7 @@ font-family: 'Quicksand', sans-serif; */
 
 
 h1,
-button, nav, #daily {
+button, nav, #daily, #weekly {
   font-family: "Comfortaa", cursive;
 }
 
@@ -17,7 +17,8 @@ h3 {
 }
 
 p,
-label {
+label,
+td {
   font-family: "Quicksand", sans-serif;
 }
 
