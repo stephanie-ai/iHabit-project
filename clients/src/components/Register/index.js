@@ -45,7 +45,7 @@ class Register extends Component {
             <div>
                 <h2>Create an Account</h2>    
 
-                <form onSubmit={this.register}>
+                <form onSubmit={this.register} >
 
                     <label htmlFor="username">Your new username</label>
                     <input type="text" name="username" onChange={this.handleInput} />

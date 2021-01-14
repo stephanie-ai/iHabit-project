@@ -22,9 +22,6 @@ class Statistics extends Component {
     componentDidMount(){
         this.dayData();
         this.weekData();
-        this.getChartData;
-        this.setGradientColor;
-        
     }
 
     dayData = async () => {
@@ -119,12 +116,6 @@ class Statistics extends Component {
                             {renderDailyData}
                         </tbody>
                     </table>
-                    <Bar 
-            options={{
-                responsive: true
-            }}
-            data={this.getChartData}
-            />
                 </div>
                 <div>
                     <table>
@@ -141,6 +132,12 @@ class Statistics extends Component {
                         </tbody>
                     </table>
                 </div>
+                <Bar 
+            options={{
+                responsive: true
+            }}
+            data={this.getChartData}
+            />
             </div>
         )
     }   
