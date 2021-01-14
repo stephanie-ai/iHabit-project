@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import '../../styles/index.css'
+import { Bar } from '@reactchartjs/react-chart.js'
+=======
+//import '../../styles/index.css'
 import { Line } from '@reactchartjs/react-chart.js'
+>>>>>>> 5acfb18a1c2eafd83b9e78c3f146cbdc0c511146
 
 class Statistics extends Component {
 
@@ -22,23 +27,20 @@ class Statistics extends Component {
     componentDidMount(){
         this.dayData();
         this.weekData();
-        this.getChartData;
-        this.setGradientColor;
-        
     }
 
     dayData = async () => {
         const getData = await fetch(`http://localhost:3000/daytrack/${this.props.user.userId}`);
         const res = await getData.json();
         if (res.err) { throw Error(res.err) }
-        console.log("daily",res);
+        //console.log("daily",res);
         this.setState({ dailyDate: res });
     };
 
     weekData = async () => {
         const formatedDate = "11-01-2021"
         const getData = await fetch(`http://localhost:3000/weektrack/${this.props.user.userId}/${formatedDate}`);
-        console.log("date",formatedDate)
+        //console.log("date",formatedDate)
         const res = await getData.json();
         if (res.err){ throw Error(res.err) }
         
@@ -101,12 +103,12 @@ class Statistics extends Component {
         ));
 
         return (
-            <div>
+            <div id="tableContainerDiv">
                 <div style={{ position: "relative", width: 600, height: 550 }}>
                     <table>
-                        <caption id ="daily">Daily</caption>
+                        <caption id ="daily">Daily habits stats</caption>
                         <thead>
-                            <tr>
+                            <tr id="dailyFields">
                                 <th>Habit</th>
                                 <th>Number To Complete</th>
                                 <th>Today</th>
@@ -119,18 +121,12 @@ class Statistics extends Component {
                             {renderDailyData}
                         </tbody>
                     </table>
-                    <Line 
-            options={{
-                responsive: true
-            }}
-            data={this.getChartData}
-            />
                 </div>
                 <div>
                     <table>
-                        <caption id="weekly">Weekly</caption>
+                        <caption id="weekly">Weekly habits stats</caption>
                         <thead>
-                            <tr>
+                            <tr id="weeklyFields">
                                 <th>Habit</th>
                                 <th>Weekly Completion Average</th>
                                 <th>Start Date</th>
@@ -141,6 +137,12 @@ class Statistics extends Component {
                         </tbody>
                     </table>
                 </div>
+                <Bar 
+            options={{
+                responsive: true
+            }}
+            data={this.getChartData}
+            />
             </div>
         )
     }   

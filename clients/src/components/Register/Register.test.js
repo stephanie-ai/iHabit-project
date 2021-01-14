@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import { component } from 'react';
 
 describe('Register', () => {
-    let component, form;
+    let component, form, registerMock;
+    const fakeEvent = { preventDefault: () => "do nothing" };
 
     beforeEach(() => {
-        
         component = shallow(<Register />)
     })
 
@@ -42,4 +42,15 @@ describe('Register', () => {
     //     form.stimulate('submit', {preventDefault: jest.FocusNavigationEvent() });
     //     expect(registerMock).toHaveBeenNthCalledWith(1, 'bob', 'enter', 'enter');
     // })
+
+    test('it calls on register prop on form submission', () => {
+        //
+        registerMock = jest.fn()
+        component = shallow(<Register register={registerMock}/>)
+        //
+        form = component.find('form');
+        component.setState({username: "bob",password: "enter", passwordConfirmation: "enter"});
+        form.simulate("submit", fakeEvent);
+        expect(registerMock).toHaveBeenNthCalledWith(1, 'bob', 'enter', 'enter');
+    })
 })
