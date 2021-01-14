@@ -6,6 +6,7 @@ describe('AddHabit', () => {
     let stateStub = {
         count: 0
     }
+    let stubHandleClick;
 
     beforeEach(() => {
         wrapper = shallow(<AddHabit habits= {{ id: 2, habit: "eating", weekly_track: 3, daily_track: 5, user_id: 5}}/>);
@@ -61,7 +62,7 @@ describe('AddHabit', () => {
     test('it deletes habits onclick of delete button', () => {
 
     })
-    
+
     //lines 22-30, 15-18
     test('it counts', () => {
 
