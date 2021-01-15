@@ -1,0 +1,47 @@
+table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+thead, td {
+    background-color: #00BCD4;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px 15px;
+}
+
+/* tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+} */
+
+th {
+    background-color:  #636363;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+
+#weekly, #daily {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+#barchart {
+    width: 50vw;
+    height: 50vh;
+    text-align: center;
+    background-color: #def;
+    margin-top: 20px;
+}
+    

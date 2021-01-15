@@ -1,10 +1,12 @@
-[![License: MIT](https://img.shields.io/badge/Licence-MIT-green.svg)](https://opensource.org/licenses/MIT)
-
 # iHabit
+
+[![License: MIT](https://img.shields.io/badge/Licence-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Keep track of your habits here on a daily or weekly basis. Keep up your streaks and reach your goals!
 
-To View the Website, Click below!
+To View the Website, click on the link available soon!
+
+![](clients/public/ihabit.gif)
 
 ## Installation
 
@@ -17,30 +19,28 @@ To View the Website, Click below!
 
 ## Technologies
 
-- HTML
-- CSS
-- JavaScript
-- TDD: Jest/Enzyme
-- Nodemon
-- React
-- Postgres SQL
-- Docker
-- Netlify
+- HTML, CSS, JavaScript, TDD: Jest/Enzyme, Nodemon, React, Postgres SQL, ChartJs, Docker, Netlify
 
-## Wins & Challenges
+## Wins and Challenges
 
 - Users can register an account and login
 - Users can choose a habit they want to track and choose the frequency
 - Users can mark a habit as complete for the day
-- Users can see their most recent completion s
+- Users can see their most recent completions
+- CRUD - users can create, read, update (completion) and delete a habit
 
 ## Future Features
 
+- Allow users to keep track of their habits with a visual calendar
+- Social media integration so users can link iHabit to a chosen social media account
+
 ## Learning Curves
+
+- Achieving above 60% test coverage
 
 ## Contributors
 
-@rajtandel21 @stephanie-ai @Tempestx4 @GeriNZ @FopeA6
+[@rajtandel21](https://github.com/rajtandel21), [@stephanie-ai](https://github.com/stephanie-ai), [@Tempestx4](https://github.com/Tempestx4) [@GeriNZ](https://github.com/GeriNZ), [@FopeA6](https://github.com/FopeA6)
 
 ## Licence
 

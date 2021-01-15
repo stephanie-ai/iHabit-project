@@ -25,6 +25,9 @@ describe('Home', () => {
         let links = component.find('Login');
         expect (links).toHaveLength(1)
     })
+    
+    
+
     test('it setState from showRegisterBox onClick', () => {
         let registerbtn = component.find('#registerbtn')
         initProps = component.setProps({

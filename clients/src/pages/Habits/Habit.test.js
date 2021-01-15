@@ -63,14 +63,24 @@ describe('Habits', () => {
 
     test('a function within createHabit has been called', ()=>{
         const instance = component.instance();
+        jest.spyOn(instance, 'createHabit');
         jest.spyOn(instance, 'fetchHabits');
-        // jest.spyOn(instance, 'weekData');
-        instance.fetchHabits();
+        instance.createHabit();
         expect(instance.fetchHabits).toHaveBeenCalledTimes(1);
         // expect(instance.weekData).toHaveBeenCalledTimes(1);
+    })  
+
+    test('fetchHabits updates the state', () => { // working
+        const instance = component.instance();
+        instance.fetchHabits();
+        expect(component.state('habits')).toBe(Habits);
     })
 
-    // test('it renders a form', () => {
+})
+
+
+
+  // test('it renders a form', () => {
     //     form = component.find('#newhabitForm');
     //     // form.toHaveLength(1);
     //     // expect(form).toExist();
@@ -99,8 +109,9 @@ describe('Habits', () => {
 
     test('it renders the heading text', () => { // working
         expect(component.find('h1').text()).toContain('All your habits:');
-    });
+    
 });
+
 
 describe('testing the fetches on the page', () => {
     let component, form, instance;

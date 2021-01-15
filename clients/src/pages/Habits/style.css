@@ -1,6 +1,6 @@
 #plushabit {
     border: none;
-    padding: 25px;
+    padding: 20px;
     text-align: center;
     font-size: 3rem;
     border-radius: 50%;
@@ -8,9 +8,10 @@
     color: #00BCD4;
     background: #ECECEC;
     font-weight: bold;
-    width: 100px;
-    height: 100px;
-    
+    width: 80px;
+    height: 80px;
+    float: right;
+    cursor: pointer;
 }
 
 #plushabit:hover {
@@ -26,18 +27,22 @@
     color: #00BCD4;
     height: 40px;
     padding: 20px;
+    padding-bottom: 20px;
     border-radius: 0.3rem;
     align-items: center;
+    height: 20vh;
 }
-
-#renderh {
-  
-    text-align: center;
-}
-
 
 #top {
     text-align: center;
-    padding: 40px;
-    
+    padding: 20px;
+    border: 2px solid white;
+    background-color: #def;
+    border-radius: 20px;
+}
+
+#habits {
+    height: 100vh;
+    margin: 40px;
+    border-radius: 20px;
 }

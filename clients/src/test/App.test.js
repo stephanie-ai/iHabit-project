@@ -1,6 +1,5 @@
-import App from '../App';
+import App from '../App.js';
 import { shallow } from 'enzyme';
-import { component } from 'react';
 
 fetch = jest.fn(() =>Promise.resolve({
     json: () => Promise.resolve({
@@ -10,11 +9,21 @@ fetch = jest.fn(() =>Promise.resolve({
 }))
 
 describe('App', () => {
-    let component;
+    let wrapper, component;
+    let stateStub = {
+        isLoggedIn: false,
+        currentUser: {}
+    }
 
     beforeEach(() => {
-        component = shallow(<App.WrappedComponent history={{push: (p)=>{}}}/>)
+        component = shallow(<App.WrappedComponent history={{push: (p)=>{}}} 
+        state = {{isLoggedIn: false,
+        currentUser: {}}} />)
     });
+
+    test('it exists', () => {
+        expect(wrapper).toExist
+    })
 
     test('it renders', () => {
         expect(component.find('main')).toHaveLength(1)
@@ -62,6 +71,7 @@ describe('App', () => {
         expect(instance.state.isLoggedIn).toBe(false);
     })
 
+<<<<<<< HEAD
 });
 
 describe('App', () => {
@@ -80,3 +90,19 @@ describe('App', () => {
     })
 
 })
+=======
+    test('it renders links to Logged Out Route Page', () => {
+        let links = component.find('LoggedOutRoute');
+        expect(links).toHaveLength(2)
+        })
+    
+    test('it renders links to PrivateRoute Page', () => {
+        let links = component.find('PrivateRoute');
+        expect(links).toHaveLength(2)
+        })
+    test('it renders', () => {
+        expect(component.find('Route')).toHaveLength(1)
+        })
+
+});
+>>>>>>> 8815926f081edc74b6b5dd06fd1e862a6d1e5918
