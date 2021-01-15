@@ -13,7 +13,6 @@ class Habits extends Component {
         this.fetchHabits();
     }
     
-
     fetchHabits = async () => {
         const resp = await fetch(`http://localhost:3000/habit/${this.props.user.userId}`);
         const habits = await resp.json();
@@ -51,10 +50,10 @@ class Habits extends Component {
                     <input type="text" name="habitName" />
 
                     <label htmlFor="daysPerWeek">Number of days per week:</label>
-                    <input type="number" name="daysPerWeek" />
+                    <input type="number" name="daysPerWeek" min="0" max="20" />
 
                     <label htmlFor="dailyCount">How many times per day:</label>
-                    <input type="number" name="dailyCount" />
+                    <input type="number" name="dailyCount" min="0" max="20" />
 
                     <input type="submit" value="add habit" />
                 </form>
@@ -63,14 +62,11 @@ class Habits extends Component {
         return (
             <section id="habits">
                 <div id='top'>
-                <h3>Habits you are working on</h3>
                 <button id="plushabit" onClick={this.habitForm}>+</button>
                 { this.state.enterHabit ? newhabit : null }
-                <h1>All your habits:</h1>
+                <h1>Your habits:</h1>
                 </div>
-                <div id="renderh">
                 { renderHabits }
-                </div>
             </section>
         );
     }

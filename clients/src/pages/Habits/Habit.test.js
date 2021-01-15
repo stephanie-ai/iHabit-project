@@ -18,7 +18,7 @@ describe('Habits', () => {
     })
 
     test('it renders the title', () => { // working
-        expect(component.find('h3').text()).toContain('Hello from habits page');
+        expect(component.find('h3').text()).toContain('Habits you are working on');
     });
 
     test('it has a plushabit button', () => { // working
@@ -27,39 +27,49 @@ describe('Habits', () => {
         // component.find('button').stimulate('click');
     })
 
-    test('createHabit does things', () => {
-        let fakeSubmitEvent = {
-            preventDefault: () => {},
-            target: {
-                habitName: { value: "shopping" },
-                user: { value: 2 },
-                daysPerWeek: { value: 3 },
-                dailyCount: { value: 3 }
-            }
-        }
-        instance = component.instance();
-        instance.createHabit(fakeSubmitEvent);
-        expect(component.state('habits')).toEqual([...stubHabits, { habit: "shopping", user: 2, weeklyNum: 3, dailyNum: 3 }]);
+    // test('createHabit does things', () => {
+    //     let fakeSubmitEvent = {
+    //         preventDefault: () => {},
+    //         target: {
+    //             habitName: { value: "shopping" },
+    //             user: { value: 2 },
+    //             daysPerWeek: { value: 3 },
+    //             dailyCount: { value: 3 }
+    //         }
+    //     }
+    //     instance = component.instance();
+    //     instance.createHabit(fakeSubmitEvent);
+    //     expect(component.state('habits')).toEqual([...stubHabits, { habit: "shopping", user: 2, weeklyNum: 3, dailyNum: 3 }]);
 
         
 
-        // const count = Habits.count();
-        // request(app).post('/habit').send(habit)
-        // const newCount = Habits.count()
-        // expect(newCount).toBe(count + 1);
+    //     // const count = Habits.count();
+    //     // request(app).post('/habit').send(habit)
+    //     // const newCount = Habits.count()
+    //     // expect(newCount).toBe(count + 1);
     
-    })
+    // })
 
     test('a function within createHabit has been called', ()=>{
         const instance = component.instance();
-        jest.spyOn(instance, 'dayData');
-        // jest.spyOn(instance, 'weekData');
-        instance.fetchHabits();
-        expect(instance.dayData).toHaveBeenCalledTimes(1);
+        jest.spyOn(instance, 'createHabit');
+        jest.spyOn(instance, 'fetchHabits');
+        instance.createHabit();
+        expect(instance.fetchHabits).toHaveBeenCalledTimes(1);
         // expect(instance.weekData).toHaveBeenCalledTimes(1);
+    })  
+
+    test('fetchHabits updates the state', () => { // working
+        const instance = component.instance();
+        instance.fetchHabits();
+        expect(component.state('habits')).toBe(Habits);
     })
 
-    // test('it renders a form', () => {
+})
+
+
+
+  // test('it renders a form', () => {
     //     form = component.find('#newhabitForm');
     //     // form.toHaveLength(1);
     //     // expect(form).toExist();
@@ -74,19 +84,3 @@ describe('Habits', () => {
     //     expect(inputs.first().props().type).toBe('text');
     //     expect(inputs.second().props().type).toBe('number');
     // })
-
-    test('fetchHabits updates the state', () => { // working
-        const instance = component.instance();
-        instance.fetchHabits();
-        expect(component.state('habits')).to(stubHabits);
-    })
-
-    test('it renders a paragraph', () => { // working
-        const pTag = component.find('p');
-        expect(pTag).toHaveLength(1)
-    })
-
-    test('it renders the paragraph text', () => { // working
-        expect(component.find('p').text()).toContain('All your habits:');
-    });
-})

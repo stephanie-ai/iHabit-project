@@ -6,8 +6,6 @@ table {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     margin-left:auto; 
     margin-right:auto;
-    
-    
 }
 
 thead, td {
@@ -38,3 +36,12 @@ tbody tr:nth-of-type(even) {
     margin-top: 20px;
     padding: 20px;
 }
+
+#barchart {
+    width: 50vw;
+    height: 50vh;
+    text-align: center;
+    background-color: #def;
+    margin-top: 20px;
+}
+    

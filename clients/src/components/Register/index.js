@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import '../../styles/index.css'
 
 class Register extends Component {
@@ -46,18 +45,21 @@ class Register extends Component {
                 <h2>Create an Account</h2>    
 
                 <form onSubmit={this.register} >
-
-                    <label htmlFor="username">Your new username</label>
-                    <input type="text" name="username" onChange={this.handleInput} />
-
-                    <label htmlFor="password">Create a password</label>
-                    <input type="text" name="password" onChange={this.handleInput} />
-
-                    <label htmlFor="passwordConfirmation">Confirm your password</label>
-                    <input type="text" name="passwordConfirmation" onChange={this.handleInput} />
-
-                    <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Create Account" />
-
+                    <div className="loginInput">
+                        <label htmlFor="username">Your new username</label>
+                        <input type="text" name="username" onChange={this.handleInput} />
+                    </div>
+                    <div className="loginInput">
+                        <label htmlFor="password">Create a password</label>
+                        <input type="password" name="password" onChange={this.handleInput} />
+                    </div>
+                    <div className="loginInput">
+                        <label htmlFor="passwordConfirmation">Confirm your password</label>
+                        <input type="password" name="passwordConfirmation" onChange={this.handleInput} />
+                    </div>
+                    <div className="loginInput">
+                        <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Create Account" />
+                    </div>
                 </form>
             </div>
         )
