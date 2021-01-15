@@ -133,12 +133,16 @@ class Statistics extends Component {
                         </tbody>
                     </table>
                 </div>
+                <div id="barchart">
+                    <div id="insidebar">
                 <Bar 
             options={{
                 responsive: true
             }}
             data={this.getChartData}
             />
+            </div>
+            </div>
             </div>
         )
     }   

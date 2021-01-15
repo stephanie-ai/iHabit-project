@@ -6,17 +6,23 @@
     margin-right: 50px;  
     text-align: center;
     padding: 8px;
-    
   }
   
   nav {
-    margin-top: 20px;
-    margin-left:auto; 
-    margin-right:auto;
+    margin: 40px;
+    text-align: right;
+    border: 2px solid white;
+    padding: 20px;
+    background-color: #def;
+    border-radius: 20px;
   }
 
-  .navBar {
-    text-decoration: none;
+  #ihabitTitle {
+    position: absolute;
+    top: 25px;
+    left: 80px;
+    font-size: 40px;
+    font-weight: bold;
   }
 
   .current {
@@ -32,4 +38,3 @@
     -ms-transform: translateY(-5px);
     transform: translateY(-5px);
 }
-  

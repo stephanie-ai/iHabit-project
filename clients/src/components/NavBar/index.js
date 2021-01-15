@@ -14,8 +14,8 @@ const NavBar = ({ isLoggedIn, logout }) => {
                 </>
                 :
                 <>
+            <h2 id="ihabitTitle">iHabit</h2>
                 <NavLink to='/habits' className='nav' activeClassName='current'>Habits</NavLink>
-                <NavLink to='/addhabit' className='nav' activeClassName='current'>Add Habit</NavLink>
                 <NavLink to='/statistics' className='nav' activeClassName='current'>Statistics</NavLink>
                 <button id="logoutbtn" onClick={logout}>Logout</button>
                 </>

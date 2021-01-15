@@ -45,11 +45,11 @@ class AddHabit extends React.Component{
     render() {
         return (
             <div id='habit'>
-            <h3>{this.props.habits.habit}</h3>
-            <p id ='p1'>Complete per Week: {this.props.habits.weeklyNum}</p>
-            <p id= 'p2'>Left for Today: {this.state.count}</p>
-            <button disabled={this.state.count.completion === 0} onClick={this.completeCount}>Count</button>
-            <button className="delete-btn" onClick={e => this.deleteHabit(e)}>X</button>
+            <h3 id="habith3" className="habitItem">{this.props.habits.habit}</h3>
+            <p id ='p1' className="habitItem">Complete per Week: {this.props.habits.weeklyNum}</p>
+            <p id= 'p2' className="habitItem">Left for Today: {this.state.count}</p>
+            <button id="countBtn" className="habitItem" disabled={this.state.count.completion === 0} onClick={this.completeCount}>Count</button>
+            <button className="habitItem" className="delete-btn" onClick={e => this.deleteHabit(e)}>X</button>
         </div>
         );
     }

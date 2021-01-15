@@ -22,15 +22,17 @@ class Login extends Component {
             <div id="content">
                 <h2>Login</h2>
                 <form onSubmit={this.login}>
-                    
-                    <label htmlFor="username">Enter your username</label>
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleInput} />
-
-                    <label htmlFor="password">Enter your password</label>
-                    <input type="text" name="password" value={this.state.password} onChange={this.handleInput} />
-
-                    <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Login" />
-
+                    <div className="loginInput">
+                        <label htmlFor="username">Enter your username</label>
+                        <input type="text" name="username" value={this.state.username} onChange={this.handleInput} />
+                    </div>
+                    <div className="loginInput">
+                        <label htmlFor="password">Enter your password</label>
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleInput} />
+                    </div>
+                    <div className="loginInput">
+                        <input type="submit" className={this.formIncomplete() ? 'disabled' : 'enabled'} disabled={this.formIncomplete()} value="Login" />
+                    </div>
                 </form>
             </div>
         )
