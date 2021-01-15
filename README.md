@@ -40,7 +40,7 @@ To View the Website, click on the link available soon!
 
 ## Contributors
 
-@rajtandel21 @stephanie-ai @Tempestx4 @GeriNZ @FopeA6
+[@rajtandel21](https://github.com/rajtandel21), [@stephanie-ai](https://github.com/stephanie-ai), [@Tempestx4](https://github.com/Tempestx4) [@GeriNZ](https://github.com/GeriNZ), [@FopeA6](https://github.com/FopeA6)
 
 ## Licence
 
