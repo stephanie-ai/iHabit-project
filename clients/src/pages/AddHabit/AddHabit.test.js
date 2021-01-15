@@ -14,7 +14,8 @@ describe('AddHabit', () => {
     });
 
     test('it has a state', () => {
-
+            const instance = component.instance()
+            expect(instance['state']).toEqual({"count": "0"})
     })
 
     test('lifecycle method should have been called', () => {
