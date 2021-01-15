@@ -2,6 +2,13 @@ import App from '../App';
 import { shallow } from 'enzyme';
 import { component } from 'react';
 
+fetch = jest.fn(() =>Promise.resolve({
+    json: () => Promise.resolve({
+        userId: 5,
+        userName: "MrAwesome"
+    })
+}))
+
 describe('App', () => {
     let component;
 
@@ -56,3 +63,20 @@ describe('App', () => {
     })
 
 });
+
+describe('App', () => {
+    let component;
+
+    beforeEach(() => {
+        component = shallow(<App.WrappedComponent history={{push: (p)=>{}}}/>)
+    });
+
+    test('fetch login works', async()=>{
+        const instance = component.instance();
+        jest.spyOn(instance, 'login');
+        await instance.login({username: "MrAwesome", password: "welcome"});
+
+        expect(instance['state'].currentUser.userName).toEqual('MrAwesome');
+    })
+
+})

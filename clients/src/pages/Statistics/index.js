@@ -41,17 +41,17 @@ class Statistics extends Component {
         
         this.setState({ weeklyDate: res});
         let result = res.map(a => a.completion_average);
-        console.log("comp-average", result)
+        //console.log("comp-average", result)
         //
         let habits = res.map(a => a.habitname);
-        console.log("comp-average", habits)
+        //console.log("comp-average", habits)
         //
-        console.log("test",this.state.data.datasets)
+        //console.log("test",this.state.data.datasets)
 
         let newState = Object.assign({}, this.state);
         newState.data.datasets[0].data = result
         newState.data.labels = habits
-        console.log("newstate", newState)
+        //console.log("newstate", newState)
         this.setState(newState)
     };
 

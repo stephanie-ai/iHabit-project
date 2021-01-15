@@ -1,6 +1,21 @@
 import AddHabit from '.';
 import { shallow } from 'enzyme';
 
+fetch = jest.fn(()=> Promise.resolve({
+    json: ()=> Promise.resolve([
+        {
+            id: 10,
+            habit_id: 5,
+            user_id: 5,
+            completion: 5,
+            dayData: 'Thu',
+            currentdate: '14-01-2021',
+            streak: false,
+            streak_day: 0
+        }
+    ])
+}))
+
 describe('AddHabit', () => {
     let wrapper, form;
     let stateStub = {
@@ -12,7 +27,7 @@ describe('AddHabit', () => {
     });
 
     test('it has a state', () => {
-
+        expect(wrapper).toExist;
     })
 
     test('lifecycle method should have been called', () => {
@@ -64,6 +79,45 @@ describe('AddHabit', () => {
     
     //lines 22-30, 15-18
     test('it counts', () => {
+        const instance = wrapper.instance();
+        instance.setState({ count: 5});
+        jest.spyOn(instance, 'completeCount');
 
+        instance.completeCount();
+
+        expect(instance.completeCount).toHaveBeenCalledTimes(1)
+        //expect(instance.state.count).toBeLessThan(5);
     })
-})
+});
+
+describe('AddHabit', () => {
+    let wrapper;
+
+    beforeEach(() => {
+        wrapper = shallow(<AddHabit index={1} habits= {{ id: 2, habit: "eating", weekly_track: 3, daily_track: 5, user_id: 5}}/>);
+    });
+
+    test('component did mount', async()=>{
+        const instance = wrapper.instance();
+        expect(fetch).toHaveBeenCalledTimes(12);
+    });
+
+    test('the getnum function', async()=>{
+        const instance = wrapper.instance();
+        jest.spyOn(instance, 'getnum');
+        await instance.getnum();
+        //const completion = 5;
+        console.log(instance['state']);
+        expect(instance['state'].count).toEqual(5);
+    });
+
+    test('the completeCount function', async()=>{
+        const instance = await wrapper.instance();
+        instance.setState({ count: 5})
+        const e = {preventDefault: ()=>{}};
+        jest.spyOn(instance, 'completeCount');
+        await instance.completeCount(e);
+
+        expect(instance['state'].count).toEqual(4);
+    })
+});
