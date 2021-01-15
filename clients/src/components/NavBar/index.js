@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './style.css'
 import '../../styles/index.css'
 
@@ -24,4 +24,4 @@ const NavBar = ({ isLoggedIn, logout }) => {
     );
 }
 
-export default withRouter(NavBar);
+export default NavBar;

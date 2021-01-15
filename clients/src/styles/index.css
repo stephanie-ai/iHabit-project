@@ -58,7 +58,7 @@ input {
   margin-left: 10px;
 }
 
-button:hover {
+button:hover, #btn:hover {
   border: 0.17em solid white;
   background-color: black;
   color: white;
