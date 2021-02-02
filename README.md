@@ -4,7 +4,7 @@
 
 Keep track of your habits here on a daily or weekly basis. Keep up your streaks and reach your goals!
 
-To View the Website, click on the link available soon!
+[Click here to go to the live demo!](https://ihabit.netlify.app)
 
 ![](clients/public/ihabit.gif)
 
